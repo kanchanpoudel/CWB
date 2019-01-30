@@ -1,0 +1,9 @@
+﻿  server.cpp
+  main.cpp
+  client.cpp
+  Generating Code...
+LINK : warning LNK4075: ignoring '/INCREMENTAL' due to '/OPT:ICF' specification
+main.obj : error LNK2005: _main already defined in server.obj
+client.obj : error LNK2005: _main already defined in server.obj
+client.obj : error LNK2001: unresolved external symbol "__declspec(dllimport) public: static class sf::Time const sf::Time::Zero" (__imp_?Zero@Time@sf@@2V12@B)
+C:\Users\Acer\Desktop\CWB\Release\CWB.exe : fatal error LNK1120: 1 unresolved externals
