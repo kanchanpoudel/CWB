@@ -1,3 +1,0 @@
-﻿  server.cpp
-LINK : warning LNK4075: ignoring '/INCREMENTAL' due to '/OPT:ICF' specification
-  CWB.vcxproj -> C:\Users\Acer\Desktop\CWB\Release\CWB.exe

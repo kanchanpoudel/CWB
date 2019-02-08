@@ -1,0 +1,126 @@
+﻿  glad.cpp
+  test.cpp
+  Generating Code...
+c:\users\acer\desktop\cwb\source\test.cpp(40): warning C4715: 'parseShader': not all control paths return a value
+LINK : warning LNK4075: ignoring '/INCREMENTAL' due to '/OPT:ICF' specification
+LINK : error LNK2001: unresolved external symbol _mainCRTStartup
+glad.obj : error LNK2019: unresolved external symbol __imp____stdio_common_vsscanf referenced in function _sscanf_s
+glfw3.lib(context.c.obj) : error LNK2001: unresolved external symbol __imp____stdio_common_vsscanf
+glfw3.lib(win32_joystick.c.obj) : error LNK2001: unresolved external symbol __imp__free
+glfw3.lib(wgl_context.c.obj) : error LNK2001: unresolved external symbol __imp__free
+glfw3.lib(egl_context.c.obj) : error LNK2001: unresolved external symbol __imp__free
+glfw3.lib(win32_monitor.c.obj) : error LNK2001: unresolved external symbol __imp__free
+glfw3.lib(monitor.c.obj) : error LNK2001: unresolved external symbol __imp__free
+glfw3.lib(vulkan.c.obj) : error LNK2001: unresolved external symbol __imp__free
+glfw3.lib(win32_window.c.obj) : error LNK2001: unresolved external symbol __imp__free
+glad.obj : error LNK2001: unresolved external symbol __imp__free
+glfw3.lib(window.c.obj) : error LNK2001: unresolved external symbol __imp__free
+glfw3.lib(input.c.obj) : error LNK2001: unresolved external symbol __imp__free
+glfw3.lib(win32_init.c.obj) : error LNK2001: unresolved external symbol __imp__free
+glad.obj : error LNK2019: unresolved external symbol __imp__malloc referenced in function _gladLoadGLLoader
+glad.obj : error LNK2019: unresolved external symbol __imp__realloc referenced in function _gladLoadGLLoader
+glfw3.lib(win32_monitor.c.obj) : error LNK2001: unresolved external symbol __imp__realloc
+glad.obj : error LNK2019: unresolved external symbol _strstr referenced in function "int __cdecl has_ext(char const *)" (?has_ext@@YAHPBD@Z)
+glad.obj : error LNK2019: unresolved external symbol __imp__strncmp referenced in function "void __cdecl find_coreGL(void)" (?find_coreGL@@YAXXZ)
+glfw3.lib(context.c.obj) : error LNK2001: unresolved external symbol __imp__strncmp
+glfw3.lib(egl_context.c.obj) : error LNK2001: unresolved external symbol __imp__strncmp
+msvcprt.lib(locale0_implib.obj) : error LNK2001: unresolved external symbol @__security_check_cookie@4
+glfw3.lib(win32_window.c.obj) : error LNK2001: unresolved external symbol @__security_check_cookie@4
+glfw3.lib(win32_joystick.c.obj) : error LNK2001: unresolved external symbol @__security_check_cookie@4
+glfw3.lib(wgl_context.c.obj) : error LNK2001: unresolved external symbol @__security_check_cookie@4
+glfw3.lib(egl_context.c.obj) : error LNK2001: unresolved external symbol @__security_check_cookie@4
+glfw3.lib(context.c.obj) : error LNK2001: unresolved external symbol @__security_check_cookie@4
+glfw3.lib(win32_init.c.obj) : error LNK2001: unresolved external symbol @__security_check_cookie@4
+glfw3.lib(win32_monitor.c.obj) : error LNK2001: unresolved external symbol @__security_check_cookie@4
+glfw3.lib(monitor.c.obj) : error LNK2001: unresolved external symbol @__security_check_cookie@4
+glad.obj : error LNK2001: unresolved external symbol @__security_check_cookie@4
+test.obj : error LNK2001: unresolved external symbol @__security_check_cookie@4
+glfw3.lib(init.c.obj) : error LNK2001: unresolved external symbol @__security_check_cookie@4
+glfw3.lib(window.c.obj) : error LNK2001: unresolved external symbol @__security_check_cookie@4
+glad.obj : error LNK2019: unresolved external symbol _memcpy referenced in function _gladLoadGLLoader
+test.obj : error LNK2001: unresolved external symbol _memcpy
+msvcprt.lib(locale0_implib.obj) : error LNK2001: unresolved external symbol ___security_cookie
+glfw3.lib(win32_window.c.obj) : error LNK2001: unresolved external symbol ___security_cookie
+glfw3.lib(win32_joystick.c.obj) : error LNK2001: unresolved external symbol ___security_cookie
+glfw3.lib(wgl_context.c.obj) : error LNK2001: unresolved external symbol ___security_cookie
+glfw3.lib(egl_context.c.obj) : error LNK2001: unresolved external symbol ___security_cookie
+glfw3.lib(context.c.obj) : error LNK2001: unresolved external symbol ___security_cookie
+glfw3.lib(win32_init.c.obj) : error LNK2001: unresolved external symbol ___security_cookie
+glfw3.lib(win32_monitor.c.obj) : error LNK2001: unresolved external symbol ___security_cookie
+glfw3.lib(monitor.c.obj) : error LNK2001: unresolved external symbol ___security_cookie
+glad.obj : error LNK2001: unresolved external symbol ___security_cookie
+test.obj : error LNK2001: unresolved external symbol ___security_cookie
+glfw3.lib(init.c.obj) : error LNK2001: unresolved external symbol ___security_cookie
+glfw3.lib(window.c.obj) : error LNK2001: unresolved external symbol ___security_cookie
+test.obj : error LNK2019: unresolved external symbol "void __stdcall `eh vector constructor iterator'(void *,unsigned int,unsigned int,void (__thiscall*)(void *),void (__thiscall*)(void *))" (??_L@YGXPAXIIP6EX0@Z1@Z) referenced in function "struct shaderSource __cdecl parseShader(void)" (?parseShader@@YA?AUshaderSource@@XZ)
+test.obj : error LNK2019: unresolved external symbol "void __stdcall `eh vector destructor iterator'(void *,unsigned int,unsigned int,void (__thiscall*)(void *))" (??_M@YGXPAXIIP6EX0@Z@Z) referenced in function "struct shaderSource __cdecl parseShader(void)" (?parseShader@@YA?AUshaderSource@@XZ)
+test.obj : error LNK2019: unresolved external symbol "void * __cdecl operator new(unsigned int)" (??2@YAPAXI@Z) referenced in function "public: class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > & __thiscall std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >::_Reallocate_grow_by<class <lambda_c1b8c41cb4019640539cfd828748c4d4>,unsigned int,char>(unsigned int,class <lambda_c1b8c41cb4019640539cfd828748c4d4>,unsigned int,char)" (??$_Reallocate_grow_by@V<lambda_c1b8c41cb4019640539cfd828748c4d4>@@ID@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV01@IV<lambda_c1b8c41cb4019640539cfd828748c4d4>@@ID@Z)
+msvcprt.lib(locale0_implib.obj) : error LNK2001: unresolved external symbol "void * __cdecl operator new(unsigned int)" (??2@YAPAXI@Z)
+test.obj : error LNK2019: unresolved external symbol "void __cdecl operator delete(void *,unsigned int)" (??3@YAXPAXI@Z) referenced in function "public: class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > & __thiscall std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >::_Reallocate_grow_by<class <lambda_c1b8c41cb4019640539cfd828748c4d4>,unsigned int,char>(unsigned int,class <lambda_c1b8c41cb4019640539cfd828748c4d4>,unsigned int,char)" (??$_Reallocate_grow_by@V<lambda_c1b8c41cb4019640539cfd828748c4d4>@@ID@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV01@IV<lambda_c1b8c41cb4019640539cfd828748c4d4>@@ID@Z)
+msvcprt.lib(locale0_implib.obj) : error LNK2001: unresolved external symbol "void __cdecl operator delete(void *,unsigned int)" (??3@YAXPAXI@Z)
+test.obj : error LNK2001: unresolved external symbol ___std_terminate
+test.obj : error LNK2019: unresolved external symbol __imp___invalid_parameter_noinfo referenced in function "protected: virtual int __thiscall std::basic_filebuf<char,struct std::char_traits<char> >::uflow(void)" (?uflow@?$basic_filebuf@DU?$char_traits@D@std@@@std@@MAEHXZ)
+test.obj : error LNK2019: unresolved external symbol __imp___invalid_parameter_noinfo_noreturn referenced in function "public: class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > & __thiscall std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >::_Reallocate_grow_by<class <lambda_c1b8c41cb4019640539cfd828748c4d4>,unsigned int,char>(unsigned int,class <lambda_c1b8c41cb4019640539cfd828748c4d4>,unsigned int,char)" (??$_Reallocate_grow_by@V<lambda_c1b8c41cb4019640539cfd828748c4d4>@@ID@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV01@IV<lambda_c1b8c41cb4019640539cfd828748c4d4>@@ID@Z)
+test.obj : error LNK2019: unresolved external symbol __imp___errno referenced in function "protected: virtual int __thiscall std::basic_filebuf<char,struct std::char_traits<char> >::uflow(void)" (?uflow@?$basic_filebuf@DU?$char_traits@D@std@@@std@@MAEHXZ)
+test.obj : error LNK2019: unresolved external symbol _memchr referenced in function "public: unsigned int __thiscall std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >::find(char const * const,unsigned int)const " (?find@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QBEIQBDI@Z)
+test.obj : error LNK2019: unresolved external symbol _memmove referenced in function "public: class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > & __thiscall std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >::assign(char const * const,unsigned int)" (?assign@?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAEAAV12@QBDI@Z)
+test.obj : error LNK2019: unresolved external symbol __imp___get_stream_buffer_pointers referenced in function "protected: void __thiscall std::basic_filebuf<char,struct std::char_traits<char> >::_Init(struct _iobuf *,enum std::basic_filebuf<char,struct std::char_traits<char> >::_Initfl)" (?_Init@?$basic_filebuf@DU?$char_traits@D@std@@@std@@IAEXPAU_iobuf@@W4_Initfl@12@@Z)
+test.obj : error LNK2019: unresolved external symbol __imp__fclose referenced in function "public: virtual __thiscall std::basic_filebuf<char,struct std::char_traits<char> >::~basic_filebuf<char,struct std::char_traits<char> >(void)" (??1?$basic_filebuf@DU?$char_traits@D@std@@@std@@UAE@XZ)
+test.obj : error LNK2019: unresolved external symbol __imp__fflush referenced in function "protected: virtual int __thiscall std::basic_filebuf<char,struct std::char_traits<char> >::sync(void)" (?sync@?$basic_filebuf@DU?$char_traits@D@std@@@std@@MAEHXZ)
+test.obj : error LNK2019: unresolved external symbol __imp__fgetc referenced in function "protected: virtual int __thiscall std::basic_filebuf<char,struct std::char_traits<char> >::uflow(void)" (?uflow@?$basic_filebuf@DU?$char_traits@D@std@@@std@@MAEHXZ)
+test.obj : error LNK2019: unresolved external symbol __imp__fgetpos referenced in function "protected: virtual class std::fpos<struct _Mbstatet> __thiscall std::basic_filebuf<char,struct std::char_traits<char> >::seekoff(__int64,int,int)" (?seekoff@?$basic_filebuf@DU?$char_traits@D@std@@@std@@MAE?AV?$fpos@U_Mbstatet@@@2@_JHH@Z)
+test.obj : error LNK2019: unresolved external symbol __imp__fputc referenced in function "protected: virtual int __thiscall std::basic_filebuf<char,struct std::char_traits<char> >::overflow(int)" (?overflow@?$basic_filebuf@DU?$char_traits@D@std@@@std@@MAEHH@Z)
+test.obj : error LNK2019: unresolved external symbol __imp__fsetpos referenced in function "protected: virtual class std::fpos<struct _Mbstatet> __thiscall std::basic_filebuf<char,struct std::char_traits<char> >::seekpos(class std::fpos<struct _Mbstatet>,int)" (?seekpos@?$basic_filebuf@DU?$char_traits@D@std@@@std@@MAE?AV?$fpos@U_Mbstatet@@@2@V32@H@Z)
+test.obj : error LNK2019: unresolved external symbol __imp___fseeki64 referenced in function "protected: virtual class std::fpos<struct _Mbstatet> __thiscall std::basic_filebuf<char,struct std::char_traits<char> >::seekoff(__int64,int,int)" (?seekoff@?$basic_filebuf@DU?$char_traits@D@std@@@std@@MAE?AV?$fpos@U_Mbstatet@@@2@_JHH@Z)
+test.obj : error LNK2019: unresolved external symbol __imp__fwrite referenced in function "protected: bool __thiscall std::basic_filebuf<char,struct std::char_traits<char> >::_Endwrite(void)" (?_Endwrite@?$basic_filebuf@DU?$char_traits@D@std@@@std@@IAE_NXZ)
+test.obj : error LNK2019: unresolved external symbol __imp__setvbuf referenced in function "protected: virtual class std::basic_streambuf<char,struct std::char_traits<char> > * __thiscall std::basic_filebuf<char,struct std::char_traits<char> >::setbuf(char *,__int64)" (?setbuf@?$basic_filebuf@DU?$char_traits@D@std@@@std@@MAEPAV?$basic_streambuf@DU?$char_traits@D@std@@@2@PAD_J@Z)
+test.obj : error LNK2019: unresolved external symbol __imp__ungetc referenced in function "protected: virtual int __thiscall std::basic_filebuf<char,struct std::char_traits<char> >::pbackfail(int)" (?pbackfail@?$basic_filebuf@DU?$char_traits@D@std@@@std@@MAEHH@Z)
+test.obj : error LNK2019: unresolved external symbol __imp___lock_file referenced in function "public: virtual void __thiscall std::basic_filebuf<char,struct std::char_traits<char> >::_Lock(void)" (?_Lock@?$basic_filebuf@DU?$char_traits@D@std@@@std@@UAEXXZ)
+test.obj : error LNK2019: unresolved external symbol __imp___unlock_file referenced in function "public: virtual void __thiscall std::basic_filebuf<char,struct std::char_traits<char> >::_Unlock(void)" (?_Unlock@?$basic_filebuf@DU?$char_traits@D@std@@@std@@UAEXXZ)
+test.obj : error LNK2019: unresolved external symbol ___std_exception_copy referenced in function "public: __thiscall std::bad_cast::bad_cast(class std::bad_cast const &)" (??0bad_cast@std@@QAE@ABV01@@Z)
+test.obj : error LNK2019: unresolved external symbol ___std_exception_destroy referenced in function "public: virtual __thiscall std::bad_cast::~bad_cast(void)" (??1bad_cast@std@@UAE@XZ)
+test.obj : error LNK2019: unresolved external symbol __CxxThrowException@8 referenced in function "class std::codecvt<char,char,struct _Mbstatet> const & __cdecl std::use_facet<class std::codecvt<char,char,struct _Mbstatet> >(class std::locale const &)" (??$use_facet@V?$codecvt@DDU_Mbstatet@@@std@@@std@@YAABV?$codecvt@DDU_Mbstatet@@@0@ABVlocale@0@@Z)
+test.obj : error LNK2019: unresolved external symbol ___CxxFrameHandler3 referenced in function __unwindfunclet$??$?5DU?$char_traits@D@std@@V?$allocator@D@1@@std@@YAAAV?$basic_istream@DU?$char_traits@D@std@@@0@$$QAV10@AAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@0@@Z$3
+msvcprt.lib(locale0_implib.obj) : error LNK2001: unresolved external symbol ___CxxFrameHandler3
+glfw3.lib(win32_monitor.c.obj) : error LNK2001: unresolved external symbol _memset
+glfw3.lib(win32_window.c.obj) : error LNK2001: unresolved external symbol _memset
+glfw3.lib(win32_joystick.c.obj) : error LNK2001: unresolved external symbol _memset
+test.obj : error LNK2001: unresolved external symbol _memset
+glfw3.lib(init.c.obj) : error LNK2001: unresolved external symbol _memset
+glfw3.lib(window.c.obj) : error LNK2001: unresolved external symbol _memset
+glfw3.lib(win32_init.c.obj) : error LNK2001: unresolved external symbol _memset
+test.obj : error LNK2001: unresolved external symbol "const type_info::`vftable'" (??_7type_info@@6B@)
+glfw3.lib(win32_window.c.obj) : error LNK2001: unresolved external symbol __fltused
+glfw3.lib(win32_joystick.c.obj) : error LNK2001: unresolved external symbol __fltused
+test.obj : error LNK2001: unresolved external symbol __fltused
+glfw3.lib(window.c.obj) : error LNK2001: unresolved external symbol __fltused
+glfw3.lib(input.c.obj) : error LNK2001: unresolved external symbol __fltused
+glfw3.lib(monitor.c.obj) : error LNK2001: unresolved external symbol __fltused
+glfw3.lib(init.c.obj) : error LNK2019: unresolved external symbol __imp____stdio_common_vsprintf referenced in function __glfwInputError
+glfw3.lib(init.c.obj) : error LNK2019: unresolved external symbol __chkstk referenced in function __glfwInputError
+glfw3.lib(wgl_context.c.obj) : error LNK2001: unresolved external symbol __imp__calloc
+glfw3.lib(egl_context.c.obj) : error LNK2001: unresolved external symbol __imp__calloc
+glfw3.lib(monitor.c.obj) : error LNK2001: unresolved external symbol __imp__calloc
+glfw3.lib(vulkan.c.obj) : error LNK2001: unresolved external symbol __imp__calloc
+glfw3.lib(win32_window.c.obj) : error LNK2001: unresolved external symbol __imp__calloc
+glfw3.lib(win32_joystick.c.obj) : error LNK2001: unresolved external symbol __imp__calloc
+glfw3.lib(window.c.obj) : error LNK2001: unresolved external symbol __imp__calloc
+glfw3.lib(input.c.obj) : error LNK2001: unresolved external symbol __imp__calloc
+glfw3.lib(win32_init.c.obj) : error LNK2001: unresolved external symbol __imp__calloc
+glfw3.lib(win32_monitor.c.obj) : error LNK2001: unresolved external symbol __imp__calloc
+glfw3.lib(context.c.obj) : error LNK2019: unresolved external symbol __imp__strstr referenced in function __glfwStringInExtensionString
+glfw3.lib(win32_joystick.c.obj) : error LNK2001: unresolved external symbol __imp__strstr
+glfw3.lib(input.c.obj) : error LNK2019: unresolved external symbol __dtoul3 referenced in function _glfwSetTime
+glfw3.lib(input.c.obj) : error LNK2019: unresolved external symbol __ultod3 referenced in function _glfwGetTime
+glfw3.lib(monitor.c.obj) : error LNK2019: unresolved external symbol __imp___strdup referenced in function __glfwAllocMonitor
+glfw3.lib(win32_window.c.obj) : error LNK2001: unresolved external symbol __imp___strdup
+glfw3.lib(win32_joystick.c.obj) : error LNK2001: unresolved external symbol __imp___strdup
+glfw3.lib(monitor.c.obj) : error LNK2019: unresolved external symbol __imp__qsort referenced in function _refreshVideoModes
+glfw3.lib(win32_joystick.c.obj) : error LNK2001: unresolved external symbol __imp__qsort
+glfw3.lib(monitor.c.obj) : error LNK2019: unresolved external symbol __libm_sse2_pow_precise referenced in function _glfwSetGamma
+glfw3.lib(win32_window.c.obj) : error LNK2019: unresolved external symbol __dtoui3 referenced in function __glfwPlatformWaitEventsTimeout
+glfw3.lib(win32_joystick.c.obj) : error LNK2019: unresolved external symbol __libm_sse2_sqrt_precise referenced in function _pollJoystickState
+msvcprt.lib(locale0_implib.obj) : error LNK2019: unresolved external symbol _atexit referenced in function "void __cdecl std::`dynamic initializer for '_Fac_tidy_reg''(void)" (??__E_Fac_tidy_reg@std@@YAXXZ)
+msvcprt.lib(locale0_implib.obj) : error LNK2019: unresolved external symbol @_guard_check_icall@4 referenced in function "public: __thiscall std::_Fac_node::~_Fac_node(void)" (??1_Fac_node@std@@QAE@XZ)
+LINK : error LNK2001: unresolved external symbol __load_config_used
+C:\Users\Acer\Desktop\CWB\Release\CWB.exe : fatal error LNK1120: 54 unresolved externals
