@@ -215,7 +215,7 @@ int main(void)
 		glPointSize(4);
 
 
-		glDrawArrays(GL_POINTS, 100, positions.size()-200);
+		glDrawArrays(GL_POINTS, 2, positions.size()-2);
 
 
 		glBindVertexArray(0);
