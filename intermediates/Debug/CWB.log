@@ -1,3 +1,2 @@
 ﻿  test.cpp
-c:\users\acer\desktop\cwb\source\test.cpp(193): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
   CWB.vcxproj -> C:\Users\Acer\Desktop\CWB\Debug\CWB.exe

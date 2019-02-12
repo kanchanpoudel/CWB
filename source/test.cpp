@@ -13,24 +13,7 @@ ASSERT(GLLogCall())
 
 
 static double posX, posY;
-static std::vector<float> positions{ 0.0f, 0.0f }s;
-/*static void mouse_button_callback(GLFWwindow* window, int button, int action, int state)
-{
-
-if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS)
-{
-
-//getting cursor position
-glfwGetCursorPos(window, &pressX, &pressY);
-std::cout << "Cursor Position at (" << pressX << " : " << pressY << std::endl;
-positions.push_back((float)(-320 + pressX) / 320);
-positions.push_back((float)(+240 - pressY) / 240);
-
-}
-
-}*/
-
-
+static std::vector<float> positions;
 
 static void GLClearError()
 {
@@ -142,7 +125,7 @@ int main(void)
 
 	/* Create a windowed mode window and its OpenGL context */
 
-	window = glfwCreateWindow(1400, 800, "Hello World", NULL, NULL);
+	window = glfwCreateWindow(640, 480, "Hello World", NULL, NULL);
 	if (!window)
 	{
 		glfwTerminate();
@@ -150,7 +133,6 @@ int main(void)
 	}
 	/* Make the window's context current */
 	glfwMakeContextCurrent(window);
-	
 
 
 
@@ -162,10 +144,9 @@ int main(void)
 	glGenVertexArrays(1, &VAO);
 	glGenBuffers(1, &buffer);
 
-	glViewport(0, 0, 1400, 800);
 
 
-	
+
 	/* Loop until the user closes the window */
 	while (!glfwWindowShouldClose(window))
 	{
@@ -175,9 +156,11 @@ int main(void)
 		glClear(GL_COLOR_BUFFER_BIT);
 
 		//glfwSetMouseButtonCallback(window, mouse_button_callback);
-		
-		
-		
+
+		/*glGenVertexArrays(1, &VAO);
+		glGenBuffers(1, &buffer);*/
+
+
 		glBindVertexArray(VAO);
 		glBindBuffer(GL_ARRAY_BUFFER, buffer);
 
@@ -189,8 +172,10 @@ int main(void)
 
 
 			glfwGetCursorPos(window, &posX, &posY);
-			positions.push_back((float)(-700 + posX) / 700);
-			positions.push_back((float)(+400 - posY) / 400-0.1);
+			positions.push_back((float)(-320 + posX) / 320);
+			
+			positions.push_back((float)(+240 - posY) / 240);
+
 
 
 
@@ -203,7 +188,7 @@ int main(void)
 
 
 		glEnableVertexAttribArray(0);
-		glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(float),0);
+		glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(float), 0);
 		glBindBuffer(GL_ARRAY_BUFFER, 0);
 
 		glBindVertexArray(0);
@@ -227,15 +212,10 @@ int main(void)
 		glBindVertexArray(VAO);
 
 
-		glPointSize(8);
-		
+		glPointSize(4);
 
-		glDrawArrays(GL_POINTS, 2,positions.size());
-		
-										
 
-		
-		
+		glDrawArrays(GL_POINTS, 100, positions.size()-200);
 
 
 		glBindVertexArray(0);
