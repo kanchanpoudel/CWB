@@ -12,8 +12,29 @@ ASSERT(GLLogCall())
 
 
 
-static double posX, posY;
+static double posX,pressX,pressY, posY;
 static std::vector<float> positions;
+static std::vector<int> first{ 0 };
+static std::vector<int>count;
+static void mouse_button_callback(GLFWwindow* window, int button, int action, int state)
+{
+	int temp = (positions.size())/ 2;
+	first.push_back(temp);
+	
+		count.push_back((first[first.size() - 1] - first[first.size() - 2]));
+
+	if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS)
+	{
+
+		//getting cursor position
+		glfwGetCursorPos(window, &pressX, &pressY);
+		std::cout << "Cursor Position at (" << pressX << " : " << pressY << std::endl;
+		//positions.push_back((float)(-320 + pressX) / 320);
+		//positions.push_back((float)(+240 - pressY) / 240);
+
+	}
+	
+}
 
 static void GLClearError()
 {
@@ -155,7 +176,7 @@ int main(void)
 		glClearColor(0.0f, 0.0f, 0.4f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
 
-		//glfwSetMouseButtonCallback(window, mouse_button_callback);
+	glfwSetMouseButtonCallback(window, mouse_button_callback);
 
 		/*glGenVertexArrays(1, &VAO);
 		glGenBuffers(1, &buffer);*/
@@ -174,6 +195,7 @@ int main(void)
 			glfwGetCursorPos(window, &posX, &posY);
 			positions.push_back((float)(-320 + posX) / 320);
 			
+
 			positions.push_back((float)(+240 - posY) / 240);
 
 
@@ -211,11 +233,13 @@ int main(void)
 		glUniform4f(location, 1.0f, 0.0f, 0.0f, 1.0f);
 		glBindVertexArray(VAO);
 
-
 		glPointSize(4);
+		glLineWidth(4);
+		glDrawArrays(GL_POINTS, 0, positions.size());
 
 
-		glDrawArrays(GL_POINTS, 2, positions.size()-2);
+		glMultiDrawArrays(GL_LINE_STRIP,first.data(), count.data(), count.size());
+		glBindBuffer(GL_ARRAY_BUFFER,0);
 
 
 		glBindVertexArray(0);
