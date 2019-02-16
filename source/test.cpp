@@ -29,9 +29,8 @@ static void mouse_button_callback(GLFWwindow* window, int button, int action, in
 		//getting cursor position
 		glfwGetCursorPos(window, &pressX, &pressY);
 		std::cout << "Cursor Position at (" << pressX << " : " << pressY << std::endl;
-		//positions.push_back((float)(-320 + pressX) / 320);
-		//positions.push_back((float)(+240 - pressY) / 240);
-
+		positions.push_back((float)(-500 + pressX) / 500);
+		positions.push_back((float)(+250 - pressY) / 250);
 	}
 	
 }
@@ -146,7 +145,7 @@ int main(void)
 
 	/* Create a windowed mode window and its OpenGL context */
 
-	window = glfwCreateWindow(640, 480, "Hello World", NULL, NULL);
+	window = glfwCreateWindow(1000, 500, "Hello World", NULL, NULL);
 	if (!window)
 	{
 		glfwTerminate();
@@ -164,6 +163,7 @@ int main(void)
 	unsigned int buffer, VAO;
 	glGenVertexArrays(1, &VAO);
 	glGenBuffers(1, &buffer);
+	glViewport(0, 0, 1000, 500);
 
 
 
@@ -171,11 +171,11 @@ int main(void)
 	/* Loop until the user closes the window */
 	while (!glfwWindowShouldClose(window))
 	{
+		
 
-
-		glClearColor(0.0f, 0.0f, 0.4f, 1.0f);
+		glClearColor(1.0f, 0.0f, 0.0f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
-
+		
 	glfwSetMouseButtonCallback(window, mouse_button_callback);
 
 		/*glGenVertexArrays(1, &VAO);
@@ -193,10 +193,8 @@ int main(void)
 
 
 			glfwGetCursorPos(window, &posX, &posY);
-			positions.push_back((float)(-320 + posX) / 320);
-			
-
-			positions.push_back((float)(+240 - posY) / 240);
+			positions.push_back((float)(-500 + posX) / 500);
+			positions.push_back((float)(+250 - posY) / 250);
 
 
 
@@ -230,11 +228,11 @@ int main(void)
 		ASSERT(location != -1);
 
 
-		glUniform4f(location, 1.0f, 0.0f, 0.0f, 1.0f);
+		glUniform4f(location, 0.0f, 0.0f, 0.4f, 1.0f);
 		glBindVertexArray(VAO);
 
-		glPointSize(4);
-		glLineWidth(4);
+		glPointSize(2);
+		glLineWidth(6);
 		glDrawArrays(GL_POINTS, 0, positions.size());
 
 
