@@ -22,7 +22,7 @@ https://glad.dav1d.de/#profile=compatibility&language=c&specification=gl&loader=
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <GLFW/glad.h>
+#include "..\dependencies\glfw\include\GLFW\glad.h"
 
 static void* get_proc(const char *namez);
 

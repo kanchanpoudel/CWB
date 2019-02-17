@@ -178,8 +178,7 @@ int main(void)
 		
 	glfwSetMouseButtonCallback(window, mouse_button_callback);
 
-		/*glGenVertexArrays(1, &VAO);
-		glGenBuffers(1, &buffer);*/
+		
 
 
 		glBindVertexArray(VAO);

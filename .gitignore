@@ -1,8 +1,1 @@
-*.sln
-*.vcxproj
-*.vcxproj.filters
-*.vcxproj.user
-*.git
 *.vs
-*.txt
-*.exe
