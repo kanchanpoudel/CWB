@@ -183,10 +183,10 @@
     <Library Include="dependencies\glfw\lib-vc2015\glfw3dll.lib" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="source\glad.cpp">
+    <ClCompile Include="source\supertest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="source\test.cpp">
+    <ClCompile Include="source\glad.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

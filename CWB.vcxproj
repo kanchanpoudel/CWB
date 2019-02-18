@@ -176,7 +176,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\glad.cpp" />
-    <ClCompile Include="source\test.cpp" />
+    <ClCompile Include="source\supertest.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

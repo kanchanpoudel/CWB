@@ -1,8 +1,31 @@
-
+#include<windows.h>
 #include<iostream>
 #include<fstream>
 #include<Network.hpp>
 #include<string>
+#include<thread>
+static bool s_Finished = false;
+static sf::Int16 x;
+static sf::Packet packet;
+static sf::TcpSocket client; 
+
+using namespace std::literals::chrono_literals;
+static std::vector<sf::Int16> data;
+void DoWork()
+{
+	
+	std::cout << "started thread id-" << std::this_thread::get_id() << std::endl;
+	while (true)
+	{
+		if (client.send(packet) != sf::Socket::Done)
+		{
+			std::cout << "error sending";
+		}
+
+
+		std::this_thread::sleep_for(1s);
+	}
+}
 
 
 
@@ -24,18 +47,24 @@ int main()
 		}
 
 		// accept a new connection
-		sf::TcpSocket client;
+
 		if (listener.accept(client) != sf::Socket::Done)
 		{
 			std::cout << "Hi2";
 
 		}
+
+		std::thread worker(DoWork);
+
+
+
+		worker.detach();
+
 		while (true)
 		{
-			sf::Packet packet;
-			std::vector<sf::Int16> data, sdata;
-			std::cout << "write";
-			sf::Int16 x;
+
+			
+			
 
 
 
@@ -43,24 +72,20 @@ int main()
 			packet << x;
 			//sdata.push_back(x);
 
-			if (client.send(packet) != sf::Socket::Done)
-			{
-				std::cout << "error sending";
-			}
 
 			/*packet << static_cast<sf::Uint32>(sdata.size());
 			for (std::vector<sf::Int16>::const_iterator it = sdata.begin(); it != sdata.end(); ++it)
 				packet << *it;
 
-			
+
 			std::cout << "y/n" << std::endl;
 			std::cin >> ans;
 			*/
 		}
 	}
-		
 
-		
+
+
 	if (f == 'c')
 	{
 		char ans = 'y';
@@ -70,39 +95,35 @@ int main()
 		{
 			std::cout << "Hi3";
 		}
-		sf::Packet packet;
-		std::vector<sf::Int16> data, sdata;
-		
-		while (true)
+		sf::Packet rpacket;
+		std::vector<sf::Int16> rdata;
 		{
-			if (socket.receive(packet) == sf::Socket::Done)
-			{
-				sf::Int16 x;
-				packet >> x;
-				std::cout<< x;
-				/*sf::Uint32 size;
-				packet >> size;
-				for (sf::Uint32 i = 0; i < size; ++i)
-				{
-					sf::Int16 item;
-					packet >> item;
-					std::cout << item;
-					data.push_back(item);
-				}
-				std::ofstream output_file("client.txt");
-				std::ostream_iterator<sf::Int16> output_iterator(output_file, "\n");
-				std::copy(data.begin(), data.end(), output_iterator);
-				*/
-			}
+			
+			while (true)
 
-			
-			
-			
+			{
+				if (socket.receive(rpacket) == sf::Socket::Done)
+				{
+
+					sf::Uint32 size;
+					rpacket >> size;
+					for (sf::Uint32 i = 0; i < size; ++i)
+					{
+						sf::Int16 item;
+						rpacket >> item;
+						
+						rdata.push_back(item);
+					}
+					
+					//for (int i = 0; i < rdata.size(); ++i)
+
+						//std::cout << rdata[i];
+				}
+				
+
+			}
 		}
-		
+
 
 	}
-
-
-
 }

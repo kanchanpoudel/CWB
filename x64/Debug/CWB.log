@@ -1,0 +1,5 @@
+﻿  glad.cpp
+c:\users\acer\desktop\cwb\dependencies\glfw\include\glfw\glad.h(95): fatal error C1083: Cannot open include file: 'GLFW/khrplatform.h': No such file or directory
+  supertest.cpp
+c:\users\acer\desktop\cwb\source\supertest.cpp(9): fatal error C1083: Cannot open include file: 'Network.hpp': No such file or directory
+  Generating Code...
