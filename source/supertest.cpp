@@ -16,14 +16,15 @@
 x;\
 ASSERT(GLLogCall())
 using namespace std::literals::chrono_literals;
+static std::ofstream output_file;
 
-
-
+static int id = 0, next = 0;
 static sf::TcpSocket client;
 static sf::TcpSocket socket;
+static int temp;
 static double posX, pressX, pressY, posY;
 static std::vector<float> positions;
-static std::vector<int> first{ 0 };
+static std::vector<int> first{0};
 static std::vector<int>count;
 static sf::Packet spacket;
 static sf::Packet rpacket;
@@ -31,24 +32,33 @@ void DoWork()
 {
 
 	std::cout << "started thread id-" << std::this_thread::get_id() << std::endl;
-	
-	
+
+
 	while (true)
 	{
 		
-		spacket << static_cast<sf::Uint32>(positions.size());
-		for (std::vector<float>::const_iterator it = positions.begin(); it != positions.end(); ++it)
-			spacket << *it;
-		
-		
-		if (client.send(spacket) != sf::Socket::Done)
+		if (id == next)
 		{
-			std::cout << "error sending";
-		}
+			
 
-	
-		std::this_thread::sleep_for(5s);
+			spacket << static_cast<sf::Uint32>( positions.size());
+			for (std::vector<float>::const_iterator it = positions.begin(); it != positions.end(); ++it)
+				spacket << *it;
+
+
+
+			if (client.send(spacket) == sf::Socket::Done)
+			{
+				id+=2;
+			}
+			
+			
+			
+			
+		}
+		
 	}
+	
 }
 void DorWork()
 {
@@ -56,55 +66,55 @@ void DorWork()
 	std::cout << "started thread id-" << std::this_thread::get_id() << std::endl;
 	while (true)
 	{
-		if (socket.receive(rpacket) != sf::Socket::Done)
+		
+		if (socket.receive(rpacket) == sf::Socket::Done)
 		{
-			std::cout << "error recieving";
-		}
-		sf::Uint32 size;
+			sf::Uint32 size;
 		rpacket >> size;
 		for (sf::Uint32 i = 0; i < size; ++i)
 		{
 			float item;
 			rpacket >> item;
-			
-			positions.push_back(item);
 
+			positions.push_back(item);
+			std::cout << item;
 		
 		}
+		
+		std::cout << "---";
+
+		}
+		
 		
 		int temp = (positions.size()) / 2;
 		first.push_back(temp);
 
 		count.push_back((first[first.size() - 1] - first[first.size() - 2]));
-
-
+	
 		
-		std::this_thread::sleep_for(5s);
 		
 	}
 }
 static void mouse_button_callback(GLFWwindow* window, int button, int action, int state)
 {
-	int temp = (positions.size()) / 2;
-	first.push_back(temp);
+	
+	first.push_back((positions.size()) / 2);
 
 	count.push_back((first[first.size() - 1] - first[first.size() - 2])); 
 	
 	
 	
 
-	
-
-	
-
+	next++;
 	if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS)
 	{
 		//getting cursor position
 		glfwGetCursorPos(window, &pressX, &pressY);
 		std::cout << "Cursor Position at (" << pressX << " : " << pressY << std::endl;
-		positions.push_back((float)(-500 + pressX) / 500);
-		positions.push_back((float)(+250 - pressY) / 250);
+		
+		
 	}
+	
 	
 }
 
@@ -262,11 +272,18 @@ int main()
 
 		while (!glfwWindowShouldClose(window))
 		{
-		
+			
+
 			glClearColor(1.0f, 0.0f, 0.0f, 1.0f);
 			glClear(GL_COLOR_BUFFER_BIT);
 
+
+
 			glfwSetMouseButtonCallback(window, mouse_button_callback);
+				
+
+
+
 
 			glBindVertexArray(VAO);
 			glBindBuffer(GL_ARRAY_BUFFER, buffer);
@@ -282,9 +299,18 @@ int main()
 
 				positions.push_back((float)(+250 - posY) / 250);
 
-				spacket << (float)(-500 + posX) / 500 << (float)(+250 - posY) / 250;
+				std::cout << (float)(-500 + posX) / 500 << (float)(+250 - posY) / 250;
+
+
+
+
 
 			}
+
+
+
+
+
 
 			glBufferData(GL_ARRAY_BUFFER, (positions.size()) *(sizeof(float)), positions.data(), GL_STATIC_DRAW);
 
@@ -294,6 +320,10 @@ int main()
 			glBindBuffer(GL_ARRAY_BUFFER, 0);
 
 			glBindVertexArray(0);
+
+
+
+
 
 			shaderSource use = parseShader();
 			glBindVertexArray(VAO);
@@ -320,31 +350,66 @@ int main()
 
 			glBindVertexArray(0);
 
+
+
+
+
+
+
+
 			glfwSwapBuffers(window);
 
 			glfwPollEvents();
 
+
+
+
 		}
 	}
-	
+		
+
+
+
+		
+
 		glfwTerminate();
 
+
+
+
 	}
+
+
 
 	if (f == 'c')
 	{
-			
-		sf::Socket::Status status = socket.connect("10.100.60.49", 53000);
 		
+		
+		output_file.open("example.txt", std::ios_base::app);
+		
+		sf::Socket::Status status = socket.connect("10.100.60.49", 53000);
+		std::thread worker(DorWork);
+
+
+
+		worker.detach();
 		while(true)
 		{
 			
 			while (!glfwWindowShouldClose(window))
 			{
-
+				
 
 				glClearColor(1.0f, 0.0f, 0.0f, 1.0f);
 				glClear(GL_COLOR_BUFFER_BIT);
+
+
+				
+
+
+				
+
+
 
 				glBindVertexArray(VAO);
 				glBindBuffer(GL_ARRAY_BUFFER, buffer);
@@ -357,6 +422,10 @@ int main()
 				glBindBuffer(GL_ARRAY_BUFFER, 0);
 
 				glBindVertexArray(0);
+
+
+
+
 
 				shaderSource use = parseShader();
 				glBindVertexArray(VAO);
@@ -374,7 +443,7 @@ int main()
 
 				glPointSize(2);
 				glLineWidth(6);
-				//glDrawArrays(GL_POINTS, 0, positions.size());
+				glDrawArrays(GL_POINTS, 0, positions.size());
 
 
 				//glMultiDrawArrays(GL_LINE_STRIP, first.data(), count.data(), count.size());
@@ -384,15 +453,30 @@ int main()
 				glBindVertexArray(0);
 
 
+
+
+
+
 				glfwSwapBuffers(window);
 
 				glfwPollEvents();
 			}
 		}
-			
+		
+
+				
 		glfwTerminate();
 
 			}
+
+
+
+
+		
+
+
+
+
 
 		}
 
