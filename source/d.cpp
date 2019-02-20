@@ -1,4 +1,3 @@
-
 #include<iostream>
 #include<fstream>
 #include<thread>
@@ -16,15 +15,15 @@
 x;\
 ASSERT(GLLogCall())
 using namespace std::literals::chrono_literals;
-static sf::Int32 last = 0;
-
+static std::ofstream output_file;
+static sf::Uint32 last = 0;
 static int id = 0, next = 0;
 static sf::TcpSocket client;
 static sf::TcpSocket socket;
 static int temp;
 static double posX, pressX, pressY, posY;
 static std::vector<float> positions;
-static std::vector<int> first{0};
+static std::vector<int> first{ 0 };
 static std::vector<int>count;
 static sf::Packet spacket;
 static sf::Packet rpacket;
@@ -37,13 +36,11 @@ void DoWork()
 	while (true)
 	{
 
-		spacket.clear();
-
 		if (id == next)
 		{
-			
 
-			spacket << static_cast<sf::Uint32>( positions.size());
+
+			spacket << static_cast<sf::Uint32>(positions.size());
 			for (std::vector<float>::const_iterator it = positions.begin(); it != positions.end(); ++it)
 				spacket << *it;
 
@@ -51,16 +48,16 @@ void DoWork()
 
 			if (client.send(spacket) == sf::Socket::Done)
 			{
-				id+=2;
+				id += 2;
 			}
-			
-			
-			
-			
+
+
+
+
 		}
-		
+
 	}
-	
+
 }
 void DorWork()
 {
@@ -68,46 +65,46 @@ void DorWork()
 	std::cout << "started thread id-" << std::this_thread::get_id() << std::endl;
 	while (true)
 	{
-		
+
 		if (socket.receive(rpacket) == sf::Socket::Done)
 		{
 			sf::Uint32 size;
-		rpacket >> size;
-		for (sf::Uint32 i = 0; i < size; ++i)
-		{
-			float item;
-			rpacket >> item;
-			if (i >= last)
+			rpacket >> size;
+			for (sf::Uint32 i = 0; i < size; ++i)
 			{
-				positions.push_back(item);
-				std::cout << item;
+				float item;
+				rpacket >> item;
+				//if (i >= last)
+				//{
+					positions.push_back(item);
+					std::cout << item;
+				//}
 
 			}
+			
+			std::cout << "---";
+
 		}
-		last = size;
-		std::cout << "---";
+
+
 		int temp = (positions.size()) / 2;
 		first.push_back(temp);
 
 		count.push_back((first[first.size() - 1] - first[first.size() - 2]));
-		}
-		
-		
-		
-	
-		
-		
+
+
+
 	}
 }
 static void mouse_button_callback(GLFWwindow* window, int button, int action, int state)
 {
-	
+
 	first.push_back((positions.size()) / 2);
 
-	count.push_back((first[first.size() - 1] - first[first.size() - 2])); 
-	
-	
-	
+	count.push_back((first[first.size() - 1] - first[first.size() - 2]));
+
+
+
 
 	next++;
 	if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS)
@@ -115,11 +112,11 @@ static void mouse_button_callback(GLFWwindow* window, int button, int action, in
 		//getting cursor position
 		glfwGetCursorPos(window, &pressX, &pressY);
 		std::cout << "Cursor Position at (" << pressX << " : " << pressY << std::endl;
-		
-		
+
+
 	}
-	
-	
+
+
 }
 
 static void GLClearError()
@@ -257,10 +254,10 @@ int main()
 	if (f == 's')
 	{
 		sf::TcpListener listener;
-		
+
 
 		listener.listen(53000, "10.100.60.49");
-		
+
 
 		listener.accept(client);
 		std::thread worker(DoWork);
@@ -271,149 +268,50 @@ int main()
 
 
 		while (true)
-	{ 
-			
-
-		while (!glfwWindowShouldClose(window))
 		{
-			
 
-			glClearColor(1.0f, 0.0f, 0.0f, 1.0f);
-			glClear(GL_COLOR_BUFFER_BIT);
 
-
-
-			glfwSetMouseButtonCallback(window, mouse_button_callback);
-				
-
-
-
-
-			glBindVertexArray(VAO);
-			glBindBuffer(GL_ARRAY_BUFFER, buffer);
-
-			int state = glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT);
-			if (state == GLFW_PRESS)
-			{
-
-
-				glfwGetCursorPos(window, &posX, &posY);
-				positions.push_back((float)(-500 + posX) / 500);
-
-				positions.push_back((float)(+250 - posY) / 250);
-
-				std::cout << (float)(-500 + posX) / 500 << (float)(+250 - posY) / 250;
-
-
-
-
-
-			}
-
-
-
-
-
-
-			glBufferData(GL_ARRAY_BUFFER, (positions.size()) *(sizeof(float)), positions.data(), GL_STATIC_DRAW);
-
-
-			glEnableVertexAttribArray(0);
-			glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(float), 0);
-			glBindBuffer(GL_ARRAY_BUFFER, 0);
-
-			glBindVertexArray(0);
-
-
-
-
-
-			shaderSource use = parseShader();
-			glBindVertexArray(VAO);
-
-
-			unsigned int shader = CreateShader(use.vertexshader, use.fragmentshader);
-
-			glUseProgram(shader);
-			int location = glGetUniformLocation(shader, "u_Color");
-			ASSERT(location != -1);
-
-
-			glUniform4f(location, 0.0f, 0.0f, 0.4f, 1.0f);
-			glBindVertexArray(VAO);
-
-			glPointSize(2);
-			glLineWidth(6);
-			glDrawArrays(GL_POINTS, 0, positions.size());
-
-
-			glMultiDrawArrays(GL_LINE_STRIP, first.data(), count.data(), count.size());
-			glBindBuffer(GL_ARRAY_BUFFER, 0);
-
-
-			glBindVertexArray(0);
-
-
-
-
-
-
-
-
-			glfwSwapBuffers(window);
-
-			glfwPollEvents();
-
-
-
-
-		}
-	}
-		
-
-
-
-		
-
-		glfwTerminate();
-
-
-
-
-	}
-
-
-
-	if (f == 'c')
-	{
-		
-		
-		sf::Socket::Status status = socket.connect("10.100.60.49", 53000);
-		std::thread worker(DorWork);
-
-
-
-		worker.detach();
-		while(true)
-		{
-			
 			while (!glfwWindowShouldClose(window))
 			{
-				
+
 
 				glClearColor(1.0f, 0.0f, 0.0f, 1.0f);
 				glClear(GL_COLOR_BUFFER_BIT);
 
 
-				
+
+				glfwSetMouseButtonCallback(window, mouse_button_callback);
 
 
-				
 
 
 
 				glBindVertexArray(VAO);
 				glBindBuffer(GL_ARRAY_BUFFER, buffer);
+
+				int state = glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT);
+				spacket.clear();
+				if (state == GLFW_PRESS)
+				{
+
+
+					glfwGetCursorPos(window, &posX, &posY);
+					positions.push_back((float)(-500 + posX) / 500);
+
+					positions.push_back((float)(+250 - posY) / 250);
+
+					std::cout << (float)(-500 + posX) / 500 << (float)(+250 - posY) / 250;
+
+
+
+
+
+				}
+
+
+
+
+
 
 				glBufferData(GL_ARRAY_BUFFER, (positions.size()) *(sizeof(float)), positions.data(), GL_STATIC_DRAW);
 
@@ -458,29 +356,130 @@ int main()
 
 
 
+
+
+				glfwSwapBuffers(window);
+
+				glfwPollEvents();
+
+
+
+
+			}
+		}
+
+
+
+
+
+
+		glfwTerminate();
+
+
+
+
+	}
+
+
+
+	if (f == 'c')
+	{
+
+
+		output_file.open("example.txt", std::ios_base::app);
+
+		sf::Socket::Status status = socket.connect("10.100.60.49", 53000);
+		std::thread worker(DorWork);
+
+
+
+		worker.detach();
+		while (true)
+		{
+
+			while (!glfwWindowShouldClose(window))
+			{
+
+
+				glClearColor(1.0f, 0.0f, 0.0f, 1.0f);
+				glClear(GL_COLOR_BUFFER_BIT);
+
+
+
+
+
+
+
+
+
+				glBindVertexArray(VAO);
+				glBindBuffer(GL_ARRAY_BUFFER, buffer);
+
+				glBufferData(GL_ARRAY_BUFFER, (positions.size()) *(sizeof(float)), positions.data(), GL_STATIC_DRAW);
+
+
+				glEnableVertexAttribArray(0);
+				glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(float), 0);
+				glBindBuffer(GL_ARRAY_BUFFER, 0);
+
+				glBindVertexArray(0);
+
+
+
+
+
+				shaderSource use = parseShader();
+				glBindVertexArray(VAO);
+
+
+				unsigned int shader = CreateShader(use.vertexshader, use.fragmentshader);
+
+				glUseProgram(shader);
+				int location = glGetUniformLocation(shader, "u_Color");
+				ASSERT(location != -1);
+
+
+				glUniform4f(location, 0.0f, 0.0f, 0.4f, 1.0f);
+				glBindVertexArray(VAO);
+
+				glPointSize(2);
+				glLineWidth(6);
+				glDrawArrays(GL_POINTS, 0, positions.size());
+
+
+				//glMultiDrawArrays(GL_LINE_STRIP, first.data(), count.data(), count.size());
+				glBindBuffer(GL_ARRAY_BUFFER, 0);
+
+
+				glBindVertexArray(0);
+
+
+
+
+
+
 				glfwSwapBuffers(window);
 
 				glfwPollEvents();
 			}
 		}
-		
 
-				
+
+
 		glfwTerminate();
 
-			}
-
-
-
-
-		
+	}
 
 
 
 
 
-		}
 
 
 
-	
+
+
+}
+
+
+
