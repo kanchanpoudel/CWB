@@ -10,6 +10,8 @@
 #include <GLFW/glfw3.h>
 #include"..\include\DataBuffer.h"
 #include"..\include\shader.h"
+#include"..\include\Board.h"
+#include"..\include\mouse.h"
 
 #define ASSERT(x) if(!(x)) __debugbreak();
 #define GLCAll(x) GLClearError();\
@@ -112,7 +114,7 @@ static void mouse_button_callback(GLFWwindow* window, int button, int action, in
 	next++;
 	if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS)
 	{
-		//getting cursor position
+		
 		glfwGetCursorPos(window, &pressX, &pressY);
 		std::cout << "Cursor Position at (" << pressX << " : " << pressY << std::endl;
 
@@ -137,111 +139,13 @@ static bool GLLogCall()
 	return true;
 }
 
-struct shaderSource
-{
-	std::string vertexshader;
-	std::string fragmentshader;
-};
 
-static shaderSource parseShader()
-
-{
-	std::stringstream shader[2];
-
-	enum class shaderIndex
-	{
-		NONE = -1, VERTEX = 0, FRAGMENT = 1
-
-	};
-	shaderIndex index = shaderIndex::NONE;
-	std::ifstream infile("shader.Shader");
-
-
-	std::string line;
-	while (std::getline(infile, line))
-	{
-
-		if (line.find("#shader") != std::string::npos)
-		{
-			if (line.find("vertex") != std::string::npos)
-				index = shaderIndex::VERTEX;
-			else if (line.find("fragment") != std::string::npos)
-				index = shaderIndex::FRAGMENT;
-
-		}
-		else
-			shader[(int)index] << line << '\n';
-
-
-	}
-
-	return{ shader[0].str(), shader[1].str() };
-
-}
-static unsigned int CompileShader(unsigned int type, const std::string& source)
-{
-	unsigned int id = glCreateShader(type);
-	const char* src = source.c_str();
-	glShaderSource(id, 1, &src, nullptr);
-	glCompileShader(id);
-	int result;
-	glGetShaderiv(id, GL_COMPILE_STATUS, &result);
-	if (result == GL_FALSE)
-	{
-		int length;
-		glGetShaderiv(id, GL_INFO_LOG_LENGTH, &length);
-		char *message = (char*)alloca(length * sizeof(char));
-		glGetShaderInfoLog(id, length, &length, message);
-		std::cout << "Failed to compile " << (type == GL_VERTEX_SHADER ? "vertex" : "fragement") << std::endl;
-		std::cout << message << std::endl;
-		glDeleteShader(id);
-		return 0;
-
-
-	}
-
-	return id;
-}
-static int CreateShader(const std::string& vertexShader, const std::string& fragmentShader)
-{
-	unsigned int program = glCreateProgram();
-	unsigned int vs = CompileShader(GL_VERTEX_SHADER, vertexShader);
-	unsigned int fs = CompileShader(GL_FRAGMENT_SHADER, fragmentShader);
-	glAttachShader(program, vs);
-	glAttachShader(program, fs);
-	glLinkProgram(program);
-	glValidateProgram(program);
-	glDeleteShader(vs);
-	glDeleteShader(fs);
-	return program;
-
-
-
-}
 
 int main()
 {
-	
-
-	GLFWwindow* window;
-
-	/* Initialize the library */
-	if (!glfwInit())
-		return -1;
-
-	/* Create a windowed mode window and its OpenGL context */
-
-	window = glfwCreateWindow(1000, 500, "test Window", NULL, NULL);
-	if (!window)
-	{
-		glfwTerminate();
-		return -1;
-	}
-	/* Make the window's context current */
-	glfwMakeContextCurrent(window);
-
-
-
+	Board win;
+	win.initGLFW();
+    win.RenderBoard();
 	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
 	{
 		std::cout << "Failed to initialize GLAD" << std::endl; return 2;
@@ -249,12 +153,6 @@ int main()
 	Buffer b;
 	Shader s;
 	b.generateBuffers(1, 1);
-	
-	glViewport(0, 0, 1000, 500);
-
-
-
-
 	std::cout << "c or s?";
 	char f;
 	std::cin >> f;
@@ -278,29 +176,19 @@ int main()
 		{
 
 
-			while (!glfwWindowShouldClose(window))
+			while (!glfwWindowShouldClose(win.getWin()))
 			{
-
-
-				glClearColor(1.0f, 0.0f, 0.0f, 1.0f);
-				glClear(GL_COLOR_BUFFER_BIT);
-
-
-
-				glfwSetMouseButtonCallback(window, mouse_button_callback);
-
-
-
-
-				
+				win.renderWindow();
 				
 
-				int state = glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT);
+				glfwSetMouseButtonCallback(win.getWin(), mouse_button_callback);
+
+				int state = glfwGetMouseButton(win.getWin(), GLFW_MOUSE_BUTTON_LEFT);
 				if (state == GLFW_PRESS)
 				{
 
 
-					glfwGetCursorPos(window, &posX, &posY);
+					glfwGetCursorPos(win.getWin(), &posX, &posY);
 					positions.push_back((float)(-500 + posX) / 500);
 
 					positions.push_back((float)(+250 - posY) / 250);
@@ -308,63 +196,22 @@ int main()
 					std::cout << (float)(-500 + posX) / 500 << (float)(+250 - posY) / 250;
 
 
-
-
-
 				}
 
 				b.CreateBuffer(positions);
-
-
-
-
-
-
-
-
-
-
 				s.parseShader();
 				s.ShaderProgram();
+				win.DrawBoard(positions, first, count);
 
-				
-				
-
-				glPointSize(2);
-				glLineWidth(6);
-				glDrawArrays(GL_POINTS, 0, positions.size());
-
-
-				glMultiDrawArrays(GL_LINE_STRIP, first.data(), count.data(), count.size());
-				
 				b.unBindvaBuffer();
 
-
-
-
-
-
-
-				glfwSwapBuffers(window);
+				glfwSwapBuffers(win.getWin());
 
 				glfwPollEvents();
-
-
-
-
 			}
 		}
 
-
-
-
-
-
 		glfwTerminate();
-
-
-
-
 	}
 
 
@@ -382,64 +229,24 @@ int main()
 		while (true)
 		{
 
-			while (!glfwWindowShouldClose(window))
+			while (!glfwWindowShouldClose(win.getWin()))
 			{
-
-
-				glClearColor(1.0f, 0.0f, 0.0f, 1.0f);
-				glClear(GL_COLOR_BUFFER_BIT);
-
-
-
-
-
-
-
-
-
-
+				win.renderWindow();
 				b.CreateBuffer(positions);
-				
+				s.parseShader();
+				s.ShaderProgram();
 
-				
+				win.DrawBoard(positions, first, count);
 
-
-
-
-				shaderSource use = parseShader();
-
-				
-				b.bindvaBuffer();
-
-
-				unsigned int shader = CreateShader(use.vertexshader, use.fragmentshader);
-
-				glUseProgram(shader);
-				int location = glGetUniformLocation(shader, "u_Color");
-				ASSERT(location != -1);
-
-
-				glUniform4f(location, 0.0f, 0.0f, 0.4f, 1.0f);
-
-				
-				b.bindvaBuffer();
-				glPointSize(2);
-				glLineWidth(6);
-				glDrawArrays(GL_POINTS, 0, positions.size());
-
-
-				glMultiDrawArrays(GL_LINE_STRIP, first.data(), count.data(), count.size());
-				glBindBuffer(GL_ARRAY_BUFFER, 0);
-
-
-				glBindVertexArray(0);
+				b.unBindvaBuffer();
 
 
 
 
 
 
-				glfwSwapBuffers(window);
+
+				glfwSwapBuffers(win.getWin());
 
 				glfwPollEvents();
 			}
