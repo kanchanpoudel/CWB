@@ -1,6 +1,2 @@
-﻿  Board.cpp
-  mouse.cpp
-  Source.cpp
-c:\users\acer\desktop\cwb\source\source.cpp(77): warning C4018: '>=': signed/unsigned mismatch
-  Generating Code...
+﻿  server.cpp
   CWB.vcxproj -> C:\Users\Acer\Desktop\CWB\Debug\CWB.exe

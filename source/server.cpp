@@ -1,129 +1,80 @@
-#include<windows.h>
-#include<iostream>
-#include<fstream>
-#include<Network.hpp>
-#include<string>
-#include<thread>
-static bool s_Finished = false;
-static sf::Int16 x;
-static sf::Packet packet;
-static sf::TcpSocket client; 
+#include"..\include\server.h"
 
-using namespace std::literals::chrono_literals;
-static std::vector<sf::Int16> data;
-void DoWork()
+
+sf::TcpSocket Server:: client;
+sf::Packet Server::spacket;
+sf::TcpListener Server::listener;
+int Server::id;
+void Server::connectToClient()
 {
+	listener.listen(53000, "10.100.60.49");
+	listener.accept(client);
+	std::thread worker(SendingThread);
+
+
+
+	worker.detach();
+
 	
+}
+void Server::serverWindow(Board & win , Buffer & b, Mouse & mouse, Shader & s)
+{
+	while (win.windowState())
+	{
+		win.renderWindow();
+
+
+		mouse.mouseButtonPressed(win.getWin());
+
+		mouse.recordCursor(win.getWin());
+
+		b.CreateBuffer(Board::positions);
+		s.parseShader();
+		s.ShaderProgram();
+		win.DrawBoard(Board::positions, Board::first, Board::count);
+
+		b.unBindvaBuffer();
+
+		glfwSwapBuffers(win.getWin());
+
+		glfwPollEvents();
+	}
+
+
+	glfwTerminate();
+
+ }
+void Server::SendingThread()
+{
+
 	std::cout << "started thread id-" << std::this_thread::get_id() << std::endl;
+
+
 	while (true)
 	{
-		if (client.send(packet) != sf::Socket::Done)
-		{
-			std::cout << "error sending";
-		}
 
+		spacket.clear();
 
-		std::this_thread::sleep_for(1s);
-	}
-}
-
-
-
-
-
-int main()
-{
-
-	std::cout << "c or s?";
-	char f;
-	std::cin >> f;
-	if (f == 's')
-	{
-		sf::TcpListener listener;
-		char ans = 'y';
-		if (listener.listen(53000, "10.100.60.49") != sf::Socket::Done)
-		{
-			std::cout << "Hi";
-		}
-
-		// accept a new connection
-
-		if (listener.accept(client) != sf::Socket::Done)
-		{
-			std::cout << "Hi2";
-
-		}
-
-		std::thread worker(DoWork);
-
-
-
-		worker.detach();
-
-		while (true)
+		if (id == Mouse::next)
 		{
 
-			
-			
+
+			spacket << static_cast<sf::Uint32>(Board::positions.size());
+			for (std::vector<float>::const_iterator it = Board::positions.begin(); it != Board::positions.end(); ++it)
+				spacket << *it;
 
 
 
-			std::cin >> x;
-			packet << x;
-			//sdata.push_back(x);
-
-
-			/*packet << static_cast<sf::Uint32>(sdata.size());
-			for (std::vector<sf::Int16>::const_iterator it = sdata.begin(); it != sdata.end(); ++it)
-				packet << *it;
-
-
-			std::cout << "y/n" << std::endl;
-			std::cin >> ans;
-			*/
-		}
-	}
-
-
-
-	if (f == 'c')
-	{
-		char ans = 'y';
-		sf::TcpSocket socket;
-		sf::Socket::Status status = socket.connect("10.100.60.49", 53000);
-		if (status != sf::Socket::Done)
-		{
-			std::cout << "Hi3";
-		}
-		sf::Packet rpacket;
-		std::vector<sf::Int16> rdata;
-		{
-			
-			while (true)
-
+			if (client.send(spacket) == sf::Socket::Done)
 			{
-				if (socket.receive(rpacket) == sf::Socket::Done)
-				{
-
-					sf::Uint32 size;
-					rpacket >> size;
-					for (sf::Uint32 i = 0; i < size; ++i)
-					{
-						sf::Int16 item;
-						rpacket >> item;
-						
-						rdata.push_back(item);
-					}
-					
-					//for (int i = 0; i < rdata.size(); ++i)
-
-						//std::cout << rdata[i];
-				}
-				
-
+				id += 2;
 			}
+
+
+
+
 		}
 
-
 	}
+
 }

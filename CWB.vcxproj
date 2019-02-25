@@ -156,6 +156,8 @@
     <ClInclude Include="dependencies\Sfml\include\SFML\SFML\System\Vector3.hpp" />
     <ClInclude Include="dependencies\Sfml\include\SFML\System.hpp" />
     <ClInclude Include="dependencies\Sfml\include\SFML\Window.hpp" />
+    <ClInclude Include="include\Board.h" />
+    <ClInclude Include="include\client.h" />
     <ClInclude Include="include\DataBuffer.h" />
     <ClInclude Include="include\KHR\Board.h" />
     <ClInclude Include="include\mouse.h" />
@@ -178,9 +180,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\Board.cpp" />
+    <ClCompile Include="source\client.cpp" />
     <ClCompile Include="source\DataBuffer.cpp" />
     <ClCompile Include="source\glad.cpp" />
     <ClCompile Include="source\mouse.cpp" />
+    <ClCompile Include="source\server.cpp" />
     <ClCompile Include="source\shader.cpp.cpp" />
     <ClCompile Include="source\Source.cpp" />
   </ItemGroup>

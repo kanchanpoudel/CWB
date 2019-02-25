@@ -12,57 +12,19 @@
 #include"..\include\shader.h"
 #include"..\include\Board.h"
 #include"..\include\mouse.h"
+#include"..\include\server.h"
 
-using namespace std::literals::chrono_literals;
+
 static sf::Int32 last = 0;
-
-static int id = 0;
 static sf::TcpSocket client;
 static sf::TcpSocket socket;
 static int temp;
-
-
-static sf::Packet spacket;
 static sf::Packet rpacket;
 
-void DoWork()
-{
-
-	std::cout << "started thread id-" << std::this_thread::get_id() << std::endl;
-
-
-	while (true)
-	{
-
-		spacket.clear();
-
-		if (id == Mouse::next)
-		{
-
-
-			spacket << static_cast<sf::Uint32>(Board::positions.size());
-			for (std::vector<float>::const_iterator it = Board::positions.begin(); it != Board::positions.end(); ++it)
-				spacket << *it;
-
-
-
-			if (client.send(spacket) == sf::Socket::Done)
-			{
-				id += 2;
-			}
-
-
-
-
-		}
-
-	}
-
-}
 void DorWork()
 {
 
-	std::cout << "started thread id-" << std::this_thread::get_id() << std::endl;
+	
 	while (true)
 	{
 
@@ -98,8 +60,6 @@ void DorWork()
 }
  
 
-
-
 int main()
 {
 	Board::first.push_back(0);
@@ -119,47 +79,11 @@ int main()
 	std::cin >> f;
 	if (f == 's')
 	{
-		sf::TcpListener listener;
+		Server server;
+		server.connectToClient();
 
-
-		listener.listen(53000, "10.100.60.49");
-
-
-		listener.accept(client);
-		std::thread worker(DoWork);
-
-
-
-		worker.detach();
-
-
-		while (true)
-		{
-
-
-			while (!glfwWindowShouldClose(win.getWin()))
-			{
-				win.renderWindow();
-				
-
-				mouse.mouseButtonPressed(win.getWin());
-
-				mouse.recordCursor(win.getWin());
-
-				b.CreateBuffer(Board::positions);
-				s.parseShader();
-				s.ShaderProgram();
-				win.DrawBoard(Board::positions, Board::first, Board::count);
-
-				b.unBindvaBuffer();
-
-				glfwSwapBuffers(win.getWin());
-
-				glfwPollEvents();
-			}
-		}
-
-		glfwTerminate();
+		server.serverWindow(win, b, mouse, s);
+		
 	}
 
 
@@ -187,12 +111,6 @@ int main()
 				win.DrawBoard(Board::positions, Board::first, Board::count);
 
 				b.unBindvaBuffer();
-
-
-
-
-
-
 
 				glfwSwapBuffers(win.getWin());
 
