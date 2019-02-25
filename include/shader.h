@@ -14,9 +14,10 @@ class Shader
 {
 private:
 	std::string vertexshader, fragmentshader;
-	std::stringstream shader[2];;
+	
 public :
-	Shader& parseShader();
+	
+	void parseShader();
 	unsigned int CompileShader(unsigned int type, const std::string& source);
 	int CreateShader(const std::string& vertexShader, const std::string& fragmentShader);
 	void ShaderProgram();

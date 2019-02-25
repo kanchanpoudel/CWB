@@ -9,7 +9,7 @@
 #include <GLFW/glad.h>
 #include <GLFW/glfw3.h>
 #include"..\include\DataBuffer.h"
-
+#include"..\include\shader.h"
 
 #define ASSERT(x) if(!(x)) __debugbreak();
 #define GLCAll(x) GLClearError();\
@@ -218,6 +218,7 @@ static int CreateShader(const std::string& vertexShader, const std::string& frag
 
 
 }
+
 int main()
 {
 	
@@ -246,6 +247,7 @@ int main()
 		std::cout << "Failed to initialize GLAD" << std::endl; return 2;
 	}
 	Buffer b;
+	Shader s;
 	b.generateBuffers(1, 1);
 	
 	glViewport(0, 0, 1000, 500);
@@ -322,18 +324,8 @@ int main()
 
 
 
-				shaderSource use = parseShader();
-				
-
-
-				unsigned int shader = CreateShader(use.vertexshader, use.fragmentshader);
-
-				glUseProgram(shader);
-				int location = glGetUniformLocation(shader, "u_Color");
-				ASSERT(location != -1);
-
-
-				glUniform4f(location, 0.0f, 0.0f, 0.4f, 1.0f);
+				s.parseShader();
+				s.ShaderProgram();
 
 				
 				
