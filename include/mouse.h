@@ -7,16 +7,18 @@
 #include <GLFW/glad.h>
 #include <GLFW/glfw3.h>
 #include"..\include\Board.h"
-class mouse
+class Mouse
 {
-
+	double posX, pressX, pressY, posY;
 	
 public:
-	double posX, pressX, pressY, posY;
-	void mouseButtonPressed()
-	{
-
-	}
-
-
+	
+	static int next;
+    
+	
+	
+	static void mouse_button_callback(GLFWwindow* , int , int , int );
+    void mouseButtonPressed(GLFWwindow*);
+	void recordCursor(GLFWwindow*);
+	
 };

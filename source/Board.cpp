@@ -1,5 +1,15 @@
 #include"..\include\Board.h"
+std::vector<float>Board::positions;
+std::vector<int>Board::first;
+std::vector<int>Board::count;
+bool Board::windowState()
+{
+	if (!glfwWindowShouldClose(window))
+		return true;
+	else
+		return false;
 
+}
 void Board::initGLFW()
 {
 	glfwInit();
@@ -27,3 +37,4 @@ void Board::DrawBoard(std::vector<float> & positions, std::vector<int> & first, 
 	glDrawArrays(GL_POINTS, 0, positions.size());
 	glMultiDrawArrays(GL_LINE_STRIP, first.data(), count.data(), count.size());
 }
+ 

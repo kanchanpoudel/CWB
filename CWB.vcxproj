@@ -157,10 +157,10 @@
     <ClInclude Include="dependencies\Sfml\include\SFML\System.hpp" />
     <ClInclude Include="dependencies\Sfml\include\SFML\Window.hpp" />
     <ClInclude Include="include\DataBuffer.h" />
-    <ClInclude Include="include\Board.h" />
+    <ClInclude Include="include\KHR\Board.h" />
+    <ClInclude Include="include\mouse.h" />
     <ClInclude Include="include\server.h" />
     <ClInclude Include="include\shader.h" />
-    <ClInclude Include="server.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="dependencies\Sfml\include\SFML\SFML\System\String.inl" />
@@ -180,6 +180,7 @@
     <ClCompile Include="source\Board.cpp" />
     <ClCompile Include="source\DataBuffer.cpp" />
     <ClCompile Include="source\glad.cpp" />
+    <ClCompile Include="source\mouse.cpp" />
     <ClCompile Include="source\shader.cpp.cpp" />
     <ClCompile Include="source\Source.cpp" />
   </ItemGroup>

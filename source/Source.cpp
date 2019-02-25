@@ -13,19 +13,14 @@
 #include"..\include\Board.h"
 #include"..\include\mouse.h"
 
-#define ASSERT(x) if(!(x)) __debugbreak();
-#define GLCAll(x) GLClearError();\
-x;\
-ASSERT(GLLogCall())
 using namespace std::literals::chrono_literals;
 static sf::Int32 last = 0;
-static std::vector<float> positions;
-static std::vector<int> first{ 0 } , count;
-static int id = 0, next = 0;
+
+static int id = 0;
 static sf::TcpSocket client;
 static sf::TcpSocket socket;
 static int temp;
-static double posX, pressX, pressY, posY;
+
 
 static sf::Packet spacket;
 static sf::Packet rpacket;
@@ -41,12 +36,12 @@ void DoWork()
 
 		spacket.clear();
 
-		if (id == next)
+		if (id == Mouse::next)
 		{
 
 
-			spacket << static_cast<sf::Uint32>(positions.size());
-			for (std::vector<float>::const_iterator it = positions.begin(); it != positions.end(); ++it)
+			spacket << static_cast<sf::Uint32>(Board::positions.size());
+			for (std::vector<float>::const_iterator it = Board::positions.begin(); it != Board::positions.end(); ++it)
 				spacket << *it;
 
 
@@ -81,17 +76,17 @@ void DorWork()
 				rpacket >> item;
 				if (i >= last)
 				{
-					positions.push_back(item);
+					Board::positions.push_back(item);
 					std::cout << item;
 
 				}
 			}
 			last = size;
 			std::cout << "---";
-			int temp = (positions.size()) / 2;
-			first.push_back(temp);
+			int temp = (Board::positions.size()) / 2;
+			Board::first.push_back(temp);
 
-			count.push_back((first[first.size() - 1] -first[first.size() - 2]));
+			Board::count.push_back((Board::first[Board::first.size() - 1] - Board::first[Board::first.size() - 2]));
 		}
 
 
@@ -101,49 +96,15 @@ void DorWork()
 
 	}
 }
-static void mouse_button_callback(GLFWwindow* window, int button, int action, int state)
-{
-
-	first.push_back((positions.size()) / 2);
-
-	count.push_back((first[first.size() - 1] - first[first.size() - 2]));
-
-
-
-
-	next++;
-	if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS)
-	{
-		
-		glfwGetCursorPos(window, &pressX, &pressY);
-		std::cout << "Cursor Position at (" << pressX << " : " << pressY << std::endl;
-
-
-	}
-
-
-}
-
-static void GLClearError()
-{
-	while (glGetError() != GL_NO_ERROR);
-
-}
-static bool GLLogCall()
-{
-	while (GLenum  error = glGetError())
-	{
-		std::cout << "[OpenGl Error](" << error << ")" << std::endl;
-		return false;
-	}
-	return true;
-}
+ 
 
 
 
 int main()
 {
+	Board::first.push_back(0);
 	Board win;
+	Mouse mouse;
 	win.initGLFW();
     win.RenderBoard();
 	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
@@ -181,27 +142,14 @@ int main()
 				win.renderWindow();
 				
 
-				glfwSetMouseButtonCallback(win.getWin(), mouse_button_callback);
+				mouse.mouseButtonPressed(win.getWin());
 
-				int state = glfwGetMouseButton(win.getWin(), GLFW_MOUSE_BUTTON_LEFT);
-				if (state == GLFW_PRESS)
-				{
+				mouse.recordCursor(win.getWin());
 
-
-					glfwGetCursorPos(win.getWin(), &posX, &posY);
-					positions.push_back((float)(-500 + posX) / 500);
-
-					positions.push_back((float)(+250 - posY) / 250);
-
-					std::cout << (float)(-500 + posX) / 500 << (float)(+250 - posY) / 250;
-
-
-				}
-
-				b.CreateBuffer(positions);
+				b.CreateBuffer(Board::positions);
 				s.parseShader();
 				s.ShaderProgram();
-				win.DrawBoard(positions, first, count);
+				win.DrawBoard(Board::positions, Board::first, Board::count);
 
 				b.unBindvaBuffer();
 
@@ -229,14 +177,14 @@ int main()
 		while (true)
 		{
 
-			while (!glfwWindowShouldClose(win.getWin()))
+			while (win.windowState())
 			{
 				win.renderWindow();
-				b.CreateBuffer(positions);
+				b.CreateBuffer(Board::positions);
 				s.parseShader();
 				s.ShaderProgram();
 
-				win.DrawBoard(positions, first, count);
+				win.DrawBoard(Board::positions, Board::first, Board::count);
 
 				b.unBindvaBuffer();
 
