@@ -156,6 +156,7 @@
     <ClInclude Include="dependencies\Sfml\include\SFML\SFML\System\Vector3.hpp" />
     <ClInclude Include="dependencies\Sfml\include\SFML\System.hpp" />
     <ClInclude Include="dependencies\Sfml\include\SFML\Window.hpp" />
+    <ClInclude Include="include\DataBuffer.h" />
     <ClInclude Include="include\server.h" />
     <ClInclude Include="server.h" />
     <ClInclude Include="source\myMath.h" />
@@ -175,8 +176,9 @@
     <Library Include="dependencies\glfw\lib-vc2015\glfw3dll.lib" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="source\DataBuffer.cpp" />
     <ClCompile Include="source\glad.cpp" />
-    <ClCompile Include="source\supertest.cpp" />
+    <ClCompile Include="source\Source.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
