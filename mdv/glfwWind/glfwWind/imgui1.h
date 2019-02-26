@@ -18,31 +18,6 @@ private:
 	bool server_window;
 	bool client_window;
 public:
-	void setWhiteBoard(bool boolVal)
-	{
-		whiteboard = boolVal;
-	}
-	bool getWhiteBoard()
-	{
-		return whiteboard;
-	}
-	void setServer_Window(bool boolVal)
-	{
-		server_window = boolVal;
-	}
-	bool getServer_Window()
-	{
-		return server_window;
-	}
-	void setClient_Window(bool boolVal)
-	{
-		client_window = boolVal;
-
-	}
-	bool getClient_Window()
-	{
-		return client_window;
-	}
 	void ImGuiNeeds();
 	void ImGuiInit();
 	void ImGuiImpGLFW(GLFWwindow*);
