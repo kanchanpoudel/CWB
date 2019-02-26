@@ -23,37 +23,7 @@ void ImGui1::ImGuiInitFrame()
 	ImGui_ImplGlfw_NewFrame();
 	ImGui::NewFrame();
 }
-void ImGui1::ImGuiFirstWindowRun()
-{
-	ImGui::Begin("COLLABOATIVE WHITEBOARD");
-	ImGui::Text("Welcome To Collaborative whiteboard");
-	ImGui::Text("CHOOSE MODE:");
-	ImGui::ColorEdit3("clear color", (float*)&clear_color);
-	//ImGui::ShowFontSelector("font");
-	if (ImGui::Button("SERVER MODE"))
-	{
-		setWhiteBoard(false);
-		setServer_Window(true);
-	}
-	if (ImGui::Button("CLIENT MODE"))
-	{
-		setWhiteBoard(false);
-		setClient_Window(true);
-	}
-	ImGui::End();
-}
-void ImGui1::ImGuiServerWindowRun()
-{
-	ImGui::Begin("TOOLS");
-	ImGui::Text("CHOOSE COLOR");
-	ImGui::ColorEdit3("clear color", (float*)&clear_color);
-	if (ImGui::Button("DRAW"))
-	{
-		ImGui::Text("You're in Draw mode.");
-	}
-	ImGui::End();
-}
-void ImGui1::ImGuiClientWindowRun()
+void ImGui1::server_clientModel()
 {
 	ImGui::Begin("TOOLS");
 	ImGui::Text("CHOOSE COLOR");

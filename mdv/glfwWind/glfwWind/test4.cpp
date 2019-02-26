@@ -59,7 +59,7 @@ int main(void)
 
 	{
 		glClear(GL_COLOR_BUFFER_BIT);
-		///* Render here */
+		/* Render here */
 		//glfwSwapBuffers(window);
 
 		/* Poll for and process events */

@@ -47,9 +47,7 @@ public:
 	void ImGuiInit();
 	void ImGuiImpGLFW(GLFWwindow*);
 	void ImGuiInitFrame();
-	void ImGuiFirstWindowRun();
-	void ImGuiServerWindowRun();
-	void ImGuiClientWindowRun();
+	void server_clientModel();
 	void ImGuiRenderContext(GLFWwindow*);
 	void ImGuiCleanUp();
 };
