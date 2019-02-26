@@ -46,7 +46,6 @@ public:
 	void ImGuiNeeds();
 	void ImGuiInit();
 	void ImGuiImpGLFW(GLFWwindow*);
-	void subWindows();
 	void ImGuiInitFrame();
 	void ImGuiFirstWindowRun();
 	void ImGuiServerWindowRun();

@@ -25,9 +25,6 @@ void ImGui1::ImGuiInitFrame()
 }
 void ImGui1::ImGuiFirstWindowRun()
 {
-	static float f = 0.0f;
-	static int m = 0;
-
 	ImGui::Begin("COLLABOATIVE WHITEBOARD");
 	ImGui::Text("Welcome To Collaborative whiteboard");
 	ImGui::Text("CHOOSE MODE:");
@@ -67,6 +64,7 @@ void ImGui1::ImGuiClientWindowRun()
 	}
 	ImGui::End();
 }
+
 void ImGui1::ImGuiRenderContext(GLFWwindow* window)
 {
 	ImGuiIO& io = ImGui::GetIO(); (void)io;
@@ -78,10 +76,12 @@ void ImGui1::ImGuiRenderContext(GLFWwindow* window)
 	glClear(GL_COLOR_BUFFER_BIT);
 	ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 	glfwMakeContextCurrent(window);
+
 }
+
 void ImGui1::ImGuiCleanUp()
 {
 	ImGui_ImplOpenGL3_Shutdown();
 	ImGui_ImplGlfw_Shutdown();
 	ImGui::DestroyContext();
-}
+}	

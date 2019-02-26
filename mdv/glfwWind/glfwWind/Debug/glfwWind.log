@@ -1,7 +1,4 @@
-﻿  imgui1.cpp
-  main.cpp
-c:\users\madhav\desktop\oop project\glfwwind\glfwwind\main.cpp(31): warning C4244: 'argument': conversion from 'const float' to 'int', possible loss of data
-c:\users\madhav\desktop\oop project\glfwwind\glfwwind\main.cpp(50): warning C4244: 'argument': conversion from 'const float' to 'GLsizei', possible loss of data
-c:\users\madhav\desktop\oop project\glfwwind\glfwwind\main.cpp(50): warning C4244: 'argument': conversion from 'float' to 'GLint', possible loss of data
-  Generating Code...
-  glfwWind.vcxproj -> C:\Users\Madhav\Desktop\OOP project\glfwWind\Debug\glfwWind.exe
+﻿  menu.cpp
+c:\users\madhav\desktop\oop project\cwb\mdv\glfwwind\glfwwind\menu.cpp(69): warning C4244: 'argument': conversion from 'float' to 'GLint', possible loss of data
+c:\users\madhav\desktop\oop project\cwb\mdv\glfwwind\glfwwind\menu.cpp(114): warning C4715: 'menu::win2': not all control paths return a value
+  glfwWind.vcxproj -> C:\Users\Madhav\Desktop\OOP project\CWB\mdv\glfwWind\Debug\glfwWind.exe

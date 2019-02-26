@@ -21,9 +21,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
     <ClCompile Include="..\Dependencies\glad\src\glad.c">
       <Filter>src</Filter>
     </ClCompile>
@@ -46,6 +43,12 @@
       <Filter>src\imgui</Filter>
     </ClCompile>
     <ClCompile Include="imgui1.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="menu.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="test4.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
@@ -75,6 +78,9 @@
       <Filter>src\imgui</Filter>
     </ClInclude>
     <ClInclude Include="imgui1.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="menu.h">
       <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>

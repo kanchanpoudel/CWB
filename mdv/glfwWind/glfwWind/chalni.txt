@@ -4,18 +4,17 @@
 #include<imgui_impl_glfw.h>
 #include<imgui_impl_opengl3.h>
 #define IMGUI_IMPL_OPENGL_LOADER_GLAD
-#include<glad\glad.h>
-//.
-#include<ft2build.h>
-//#include FT_FREETYPE_H
+#include<glad\glad.h
+int win2(void);
 #include <GLFW/glfw3.h>
 #include<GLFW\glfw3native.h>
+#include"../glfwWind/imgui1.h"
 #include<iostream>
 const int SCREEN_WIDTH = 1000;
 const int SCREEN_HEIGHT = 500;
 int main(void)
 {
-
+	ImGui1 ImG1;
 	//IMGUI Needed contents
 	const char* glsl_version = "#version 130";
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
@@ -73,7 +72,10 @@ int main(void)
 	glLoadIdentity();//starts us a fresh identity matrix
 					 //GLfloat pointVertex[] = { SCREEN_WIDTH / 2,SCREEN_HEIGHT / 2 };
 					 /* Loop until the user closes the window */
+	bool server_mode = false;
+	bool client_mode = false;
 	while (!glfwWindowShouldClose(window))
+
 	{
 		glClear(GL_COLOR_BUFFER_BIT);
 		///* Render here */
@@ -86,86 +88,46 @@ int main(void)
 		ImGui_ImplOpenGL3_NewFrame();
 		ImGui_ImplGlfw_NewFrame();
 		ImGui::NewFrame();
-
-
-		if (whiteboard)
+		ImGui::SetNextWindowPos(ImVec2(0, 0), ImGuiCond_FirstUseEver);
 		{
-			//showing first window
-			//contents of this window
-			static float f = 0.0f;
-			static int m = 0;
-
-			ImGui::Begin("COLLABOATIVE WHITEBOARD");
+			ImGui::Begin("Collaborative WhiteBoard");
 			ImGui::Text("Welcome To Collaborative whiteboard");
 			ImGui::Text("CHOOSE MODE:");
-			ImGui::ColorEdit3("clear color", (float*)&clear_color);
-			//ImGui::ShowFontSelector("font");
-			if (ImGui::Button("SERVER MODE"))
-			{
-				m++;
-				whiteboard = false;
-				server_window = true;
-			}
-			if (ImGui::Button("CLIENT MODE"))
-			{
-				m--;
-				whiteboard = false;
-				client_window = true;
-			}
+			ImGui::Checkbox("SERVER MODE", &server_mode);
+			ImGui::Checkbox("CLIENT MODE", &client_mode);
 			ImGui::End();
-
-			// Rendering
-			ImGui::Render();
-			int display_w, display_h;
-			glfwMakeContextCurrent(window);
-			glfwGetFramebufferSize(window, &display_w, &display_h);
-			glViewport(0, 0, display_w, display_h);
-			glClearColor(clear_color.x, clear_color.y, clear_color.z, clear_color.w);
-			glClear(GL_COLOR_BUFFER_BIT);
-			ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 		}
-		if (server_window)
+		if (server_mode)
 		{
-			ImGui::Begin("TOOLS");
-			ImGui::Text("CHOOSE COLOR");
-			ImGui::ColorEdit3("clear color", (float*)&clear_color);
-			if (ImGui::Button("DRAW"))
-			{
-				ImGui::Text("You're in Draw mode.");
-			}
-			ImGui::End();
-			ImGui::Render();
-			int display_w, display_h;
-			glfwMakeContextCurrent(window);
-			glfwGetFramebufferSize(window, &display_w, &display_h);
-			glViewport(0, 0, display_w, display_h);
-			glClearColor(clear_color.x, clear_color.y, clear_color.z, clear_color.w);
-			glClear(GL_COLOR_BUFFER_BIT);
-			ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+			ImGui_ImplOpenGL3_Shutdown();
+			ImGui_ImplGlfw_Shutdown();
+			ImGui::DestroyContext();
+			glfwDestroyWindow(window);
+			glfwTerminate();
+			win2();
 
-			glfwMakeContextCurrent(window);
 		}
-		if (client_window)
+		if (client_mode)
 		{
-			ImGui::Begin("TOOLS");
-			ImGui::Text("CHOOSE COLOR");
-			ImGui::ColorEdit3("clear color", (float*)&clear_color);
-			if (ImGui::Button("DRAW"))
-			{
-				ImGui::Text("You're in Draw mode.");
-			}
-			ImGui::End();
-			ImGui::Render();
-			int display_w, display_h;
-			glfwMakeContextCurrent(window);
-			glfwGetFramebufferSize(window, &display_w, &display_h);
-			glViewport(0, 0, display_w, display_h);
-			glClearColor(clear_color.x, clear_color.y, clear_color.z, clear_color.w);
-			glClear(GL_COLOR_BUFFER_BIT);
-			ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
-
-			glfwMakeContextCurrent(window);
+			ImGui_ImplOpenGL3_Shutdown();
+			ImGui_ImplGlfw_Shutdown();
+			ImGui::DestroyContext();
+			glfwDestroyWindow(window);
+			glfwTerminate();
+			win2();
 		}
+		ImGui::Render();
+		int display_w, display_h;
+		glfwMakeContextCurrent(window);
+		glfwGetFramebufferSize(window, &display_w, &display_h);
+		glViewport(0, 0, display_w, display_h);
+		glClearColor(clear_color.x, clear_color.y, clear_color.z, clear_color.w);
+		glClear(GL_COLOR_BUFFER_BIT);
+		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+
+		glfwMakeContextCurrent(window);
+
+
 
 		glfwMakeContextCurrent(window);
 		glfwSwapBuffers(window);
