@@ -1,1 +1,3 @@
-﻿  CWB.vcxproj -> C:\Users\Acer\Desktop\CWB\Debug\CWB.exe
+﻿  test.cpp
+c:\users\acer\desktop\cwb\source\test.cpp(52): warning C4244: 'argument': conversion from 'float' to 'GLint', possible loss of data
+  CWB.vcxproj -> C:\Users\Acer\Desktop\CWB\Debug\CWB.exe

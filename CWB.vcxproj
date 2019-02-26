@@ -159,6 +159,7 @@
     <ClInclude Include="include\Board.h" />
     <ClInclude Include="include\client.h" />
     <ClInclude Include="include\DataBuffer.h" />
+    <ClInclude Include="include\imgui1.h" />
     <ClInclude Include="include\imguiIncludes\imconfig.h" />
     <ClInclude Include="include\imguiIncludes\imgui.h" />
     <ClInclude Include="include\imguiIncludes\imgui_impl_glfw.h" />
@@ -167,6 +168,7 @@
     <ClInclude Include="include\imguiIncludes\imstb_rectpack.h" />
     <ClInclude Include="include\imguiIncludes\imstb_textedit.h" />
     <ClInclude Include="include\imguiIncludes\imstb_truetype.h" />
+    <ClInclude Include="include\imguiIncludes\menu.h" />
     <ClInclude Include="include\KHR\Board.h" />
     <ClInclude Include="include\mouse.h" />
     <ClInclude Include="include\server.h" />
@@ -188,19 +190,16 @@
     <Library Include="dependencies\glfw\lib-vc2015\glfw3dll.lib" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="source\Board.cpp" />
-    <ClCompile Include="source\client.cpp" />
-    <ClCompile Include="source\DataBuffer.cpp" />
     <ClCompile Include="source\glad.cpp" />
     <ClCompile Include="source\menusrc\imgui.cpp" />
+    <ClCompile Include="source\menusrc\imgui1cpp.cpp" />
     <ClCompile Include="source\menusrc\imgui_demo.cpp" />
     <ClCompile Include="source\menusrc\imgui_draw.cpp" />
     <ClCompile Include="source\menusrc\imgui_impl_glfw.cpp" />
+    <ClCompile Include="source\menusrc\imgui_impl_opengl3.cpp" />
     <ClCompile Include="source\menusrc\imgui_widgets.cpp" />
-    <ClCompile Include="source\mouse.cpp" />
-    <ClCompile Include="source\server.cpp" />
-    <ClCompile Include="source\shader.cpp.cpp" />
-    <ClCompile Include="source\Source.cpp" />
+    <ClCompile Include="source\menusrc\menu.cpp" />
+    <ClCompile Include="source\test.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
