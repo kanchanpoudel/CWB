@@ -1,0 +1,7 @@
+﻿  main.cpp
+c:\users\madhav\desktop\oop project\glfwwind\glfwwind\main.cpp(2): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+c:\users\madhav\desktop\oop project\glfwwind\glfwwind\main.cpp(2): error C2059: syntax error: ':'
+c:\users\madhav\desktop\oop project\glfwwind\glfwwind\main.cpp(2): error C3927: '->': trailing return type is not allowed after a non-function declarator
+c:\users\madhav\desktop\oop project\glfwwind\glfwwind\main.cpp(2): error C3484: syntax error: expected '->' before the return type
+c:\users\madhav\desktop\oop project\glfwwind\glfwwind\main.cpp(2): error C3613: missing return type after '->' ('int' assumed)
+c:\users\madhav\desktop\oop project\glfwwind\glfwwind\main.cpp(2): error C2146: syntax error: missing ';' before identifier 'lib'
