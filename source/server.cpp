@@ -4,6 +4,7 @@
 sf::TcpSocket Server:: client;
 sf::Packet Server::spacket;
 sf::TcpListener Server::listener;
+bool Server::mouseBlock;
 int Server::id;
 void Server::connectToClient()
 {
@@ -26,13 +27,18 @@ void Server::serverWindow(ImGui1 & ImG2, Board & win , Buffer & b, Mouse & mouse
 		ImGui::SetNextWindowPos(ImVec2(700, 20), ImGuiCond_Always);
 		{
 			ImGui::Begin("TOOLS", &menu::server_mode);
-			ImGui::Text("CHOOSE COLOR");
-			ImGui::ColorEdit3("clear color", (float*)&menu::clear_color);
-			if (ImGui::Button("DRAW"))
-			{
-				ImGui::Text("You're in Draw mode.");
-			}
+			ImGui::ColorEdit3("PickColor", (float*)&menu::clear_color);
+			ImGui::Checkbox("Draw Mode", &menu::draw_mode);
+			ImGui::Checkbox("Pickk Mode", &menu::pick_mode);
 			ImGui::End();
+		}
+		if (menu::draw_mode)
+		{
+			mouseBlock = false;
+		}
+		if (menu::pick_mode)
+		{
+			mouseBlock = true;
 		}
 		ImGui::Render();
 		int display_w, display_h;
@@ -43,10 +49,14 @@ void Server::serverWindow(ImGui1 & ImG2, Board & win , Buffer & b, Mouse & mouse
 		glClear(GL_COLOR_BUFFER_BIT);
 		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
+		
+		if(mouseBlock==false)
+		{
+			mouse.mouseButtonPressed(win.getWin());
 
-		mouse.mouseButtonPressed(win.getWin());
-
-		mouse.recordCursor(win.getWin());
+			mouse.recordCursor(win.getWin());
+		}
+		
 
 		b.CreateBuffer(Board::positions);
 		s.parseShader();

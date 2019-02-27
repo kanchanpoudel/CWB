@@ -1,6 +1,2 @@
-﻿  Board.cpp
-c:\users\acer\desktop\cwb\source\board.cpp(35): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
-  main.cpp
-c:\users\acer\desktop\cwb\source\main.cpp(61): warning C4244: 'argument': conversion from 'float' to 'GLint', possible loss of data
-  Generating Code...
+﻿  server.cpp
   CWB.vcxproj -> C:\Users\Acer\Desktop\CWB\Debug\CWB.exe

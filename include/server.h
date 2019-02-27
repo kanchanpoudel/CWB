@@ -16,15 +16,15 @@ using namespace std::literals::chrono_literals;
 
 class Server
 {   private:
-	static sf::TcpSocket client;     //static beause SendingThread() uses that is a static method
-	static sf::Packet spacket;       //static beause SendingThread() uses that is a static method
-	static sf::TcpListener listener; //static beause SendingThread() uses that is a static method
+	static sf::TcpSocket client;     
+	static sf::Packet spacket;       
+	static sf::TcpListener listener; 
 	static int id;
 
 	
 	public:
-		
+		static bool mouseBlock;
 		void connectToClient();
-		static void SendingThread(); //static because it needs to be called by connectToClient
+		static void SendingThread(); 
 		void serverWindow(ImGui1&, Board &,Buffer &,Mouse &, Shader &);
 };

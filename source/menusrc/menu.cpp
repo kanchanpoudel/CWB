@@ -5,6 +5,8 @@
 #include<iostream>
 bool menu:: server_mode;
 bool menu:: client_mode;
+bool menu::draw_mode;
+bool menu::pick_mode;
 ImVec4 menu::clear_color;
 void menu::win1(GLFWwindow* window)
 {

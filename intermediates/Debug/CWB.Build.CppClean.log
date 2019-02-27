@@ -1,32 +1,29 @@
 c:\users\acer\desktop\cwb\intermediates\debug\vc141.pdb
 c:\users\acer\desktop\cwb\intermediates\debug\source.obj
 c:\users\acer\desktop\cwb\intermediates\debug\shader.cpp.obj
-c:\users\acer\desktop\cwb\intermediates\debug\servernw.obj
+c:\users\acer\desktop\cwb\intermediates\debug\server.obj
 c:\users\acer\desktop\cwb\intermediates\debug\mouse.obj
 c:\users\acer\desktop\cwb\intermediates\debug\glad.obj
 c:\users\acer\desktop\cwb\intermediates\debug\databuffer.obj
-c:\users\acer\desktop\cwb\intermediates\debug\board.obj
 c:\users\acer\desktop\cwb\intermediates\debug\client.obj
-c:\users\acer\desktop\cwb\intermediates\debug\server.obj
+c:\users\acer\desktop\cwb\intermediates\debug\board.obj
+c:\users\acer\desktop\cwb\intermediates\debug\supertest.obj
+c:\users\acer\desktop\cwb\intermediates\debug\imgui1cpp.obj
+c:\users\acer\desktop\cwb\intermediates\debug\menu.obj
+c:\users\acer\desktop\cwb\intermediates\debug\imgui.obj
+c:\users\acer\desktop\cwb\intermediates\debug\imgui_demo.obj
+c:\users\acer\desktop\cwb\intermediates\debug\imgui_impl_glfw.obj
+c:\users\acer\desktop\cwb\intermediates\debug\imgui_draw.obj
+c:\users\acer\desktop\cwb\intermediates\debug\imgui_widgets.obj
+c:\users\acer\desktop\cwb\intermediates\debug\imgui_impl_opengl3.obj
+c:\users\acer\desktop\cwb\intermediates\debug\test.obj
+c:\users\acer\desktop\cwb\intermediates\debug\main.obj
 c:\users\acer\desktop\cwb\debug\cwb.exe
 c:\users\acer\desktop\cwb\debug\cwb.ilk
 c:\users\acer\desktop\cwb\debug\cwb.pdb
-c:\users\acer\desktop\new folder\cwb\intermediates\debug\board.obj
-c:\users\acer\desktop\new folder\cwb\intermediates\debug\client.obj
-c:\users\acer\desktop\new folder\cwb\intermediates\debug\databuffer.obj
-c:\users\acer\desktop\new folder\cwb\intermediates\debug\glad.obj
-c:\users\acer\desktop\new folder\cwb\intermediates\debug\mouse.obj
-c:\users\acer\desktop\new folder\cwb\intermediates\debug\server.obj
-c:\users\acer\desktop\new folder\cwb\intermediates\debug\servernw.obj
-c:\users\acer\desktop\new folder\cwb\intermediates\debug\shader.cpp.obj
-c:\users\acer\desktop\new folder\cwb\intermediates\debug\source.obj
-c:\users\acer\desktop\new folder\cwb\intermediates\debug\vc141.pdb
-c:\users\acer\desktop\new folder\cwb\debug\cwb.pdb
-c:\users\acer\desktop\new folder\cwb\debug\cwb.exe
-c:\users\acer\desktop\new folder\cwb\debug\cwb.ilk
-c:\users\acer\desktop\new folder\cwb\intermediates\debug\cwb.tlog\cl.command.1.tlog
-c:\users\acer\desktop\new folder\cwb\intermediates\debug\cwb.tlog\cl.read.1.tlog
-c:\users\acer\desktop\new folder\cwb\intermediates\debug\cwb.tlog\cl.write.1.tlog
-c:\users\acer\desktop\new folder\cwb\intermediates\debug\cwb.tlog\link.command.1.tlog
-c:\users\acer\desktop\new folder\cwb\intermediates\debug\cwb.tlog\link.read.1.tlog
-c:\users\acer\desktop\new folder\cwb\intermediates\debug\cwb.tlog\link.write.1.tlog
+c:\users\acer\desktop\cwb\intermediates\debug\cwb.tlog\cl.command.1.tlog
+c:\users\acer\desktop\cwb\intermediates\debug\cwb.tlog\cl.read.1.tlog
+c:\users\acer\desktop\cwb\intermediates\debug\cwb.tlog\cl.write.1.tlog
+c:\users\acer\desktop\cwb\intermediates\debug\cwb.tlog\link.command.1.tlog
+c:\users\acer\desktop\cwb\intermediates\debug\cwb.tlog\link.read.1.tlog
+c:\users\acer\desktop\cwb\intermediates\debug\cwb.tlog\link.write.1.tlog

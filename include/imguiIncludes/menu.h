@@ -27,6 +27,9 @@ public:
 	static ImVec4 clear_color; 
 	static bool server_mode;
 	static bool client_mode;
+	static bool draw_mode;
+	static bool pick_mode;
+
 	void win1(GLFWwindow*);
 	void wins();
 	void winc();
