@@ -42,12 +42,7 @@ void Server::serverWindow(ImGui1 & ImG2, Board & win , Buffer & b, Mouse & mouse
 			mouseBlock = true;
 		}
 		ImGui::Render();
-		int display_w, display_h;
-		glfwMakeContextCurrent(win.getWin());
-		glfwGetFramebufferSize(win.getWin(), &display_w, &display_h);
-		glViewport(0, 0, display_w, display_h);
-		glClearColor(menu::clear_color.x,menu:: clear_color.y,menu:: clear_color.z, menu::clear_color.w);
-		glClear(GL_COLOR_BUFFER_BIT);
+		win.renderWindow();
 		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
 		

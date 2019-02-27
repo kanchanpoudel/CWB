@@ -48,5 +48,6 @@ public:
 	void ImGuiInitFrame();
 	void server_clientModel();
 	void ImGuiRenderContext(GLFWwindow*);
+	void TerminateMenu(GLFWwindow*);
 	void ImGuiCleanUp();
 };

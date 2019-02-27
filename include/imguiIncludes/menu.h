@@ -31,7 +31,8 @@ public:
 	static bool draw_mode;
 	static bool pick_mode;
 
-	void win1(GLFWwindow*);
+	void startMenu();
+	void startMenuTerminate(GLFWwindow*);
 	void wins();
 	void winc();
 	 

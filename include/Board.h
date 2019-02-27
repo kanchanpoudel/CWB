@@ -20,7 +20,10 @@ class Board
 		
 		void initGLFW();
 		void MakeWindow();
+		int GladLoader();
 		void renderWindow();
+		void SetMatrices();
+		
 		void DrawCalls(std::vector<float> &, std::vector<int> &, std::vector<int> &);
 		GLFWwindow * getWin();
 		bool windowState();

@@ -9,42 +9,71 @@ bool menu::draw_mode;
 bool menu::pick_mode;
 ImVec4 menu::clear_color;
 ImVec4 menu::brush_color;
-void menu::win1(GLFWwindow* window)
+void menu::startMenu()
 {
-	ImGui::Begin("Collaborative WhiteBoard");
-	ImGui::Text("Welcome To Collaborative whiteboard");
-	ImGui::Text("CHOOSE MODE:");
-	ImGui::Checkbox("SERVER MODE", &server_mode);
-	ImGui::Checkbox("CLIENT MODE", &client_mode);
-	ImGui::End();
-	if (server_mode)
-	{
-		ImGui_ImplOpenGL3_Shutdown();
-		ImGui_ImplGlfw_Shutdown();
-		ImGui::DestroyContext();
-		glfwDestroyWindow(window);
-		glfwTerminate();
-		wins();
-	}
-	if (client_mode)
-	{
-		ImGui_ImplOpenGL3_Shutdown();
-		ImGui_ImplGlfw_Shutdown();
-		ImGui::DestroyContext();
-		glfwDestroyWindow(window);
-		glfwTerminate();
-		winc();
-	}
-	ImGui::Render();
-	int display_w, display_h;
-	glfwMakeContextCurrent(window);
-	glfwGetFramebufferSize(window, &display_w, &display_h);
-	glViewport(0, 0, display_w, display_h);
-	glClearColor(clear_color.x, clear_color.y, clear_color.z, clear_color.w);
-	glClear(GL_COLOR_BUFFER_BIT);
-	ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+	ImGui1 ImG1;
+	ImG1.ImGuiNeeds();
+	Board win1(1000, 500, "Collaborative White Board");
 
-	glfwMakeContextCurrent(window);
+	win1.initGLFW();
+
+	win1.MakeWindow();
+	win1.GladLoader();
+
+	ImG1.ImGuiInit();
+
+	ImG1.ImGuiImpGLFW(win1.getWin());
+
+	win1.SetMatrices();
+	while (win1.windowState())
+
+	{
+
+
+
+		ImG1.ImGuiInitFrame();
+		ImGui::SetNextWindowPos(ImVec2(0, 0), ImGuiCond_FirstUseEver);
+		ImGui::Begin("Collaborative WhiteBoard");
+		ImGui::Text("Welcome To Collaborative whiteboard");
+		ImGui::Text("CHOOSE MODE:");
+		ImGui::Checkbox("SERVER MODE", &server_mode);
+		ImGui::Checkbox("CLIENT MODE", &client_mode);
+		ImGui::End();
+		if (server_mode)
+		{
+			startMenuTerminate(win1.getWin());
+			wins();
+		}
+		if (client_mode)
+		{
+			startMenuTerminate(win1.getWin());
+			winc();
+		}
+
+		ImGui::Render();
+
+		win1.renderWindow();
+
+		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+		glfwSwapBuffers(win1.getWin());
+		glfwPollEvents();
+	}
+
+
+	startMenuTerminate(win1.getWin());
+	
+	
+
+	
+
+}
+void menu::startMenuTerminate(GLFWwindow* window)
+{
+	ImGui_ImplOpenGL3_Shutdown();
+	ImGui_ImplGlfw_Shutdown();
+	ImGui::DestroyContext();
+	glfwDestroyWindow(window);
+	glfwTerminate();
 
 }
 void menu::wins()
@@ -57,23 +86,12 @@ void menu::wins()
 	Mouse mouse;
 	wins.initGLFW();
 	wins.MakeWindow();
-	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
-		std::cout << "Failed to initialize OpenGL context" << std::endl;
-		std::cin.get();
-		
-	}
+	wins.GladLoader();
 
 	ImG2.ImGuiInit();
 
 	ImG2.ImGuiImpGLFW(wins.getWin());
-
-	glViewport(0.0f, 0.0f, SCREEN_WIDTH, SCREEN_HEIGHT);//specifies drawing part of the window
-	glMatrixMode(GL_PROJECTION);//defines properties of camera that views the object in the
-								//coordinate frame
-	glLoadIdentity();
-	glOrtho(0, SCREEN_WIDTH, 0, SCREEN_HEIGHT, 0, 1);//essentially set coordinate sys
-	glMatrixMode(GL_MODELVIEW);//defines how objects are transformed in your world
-	glLoadIdentity();//starts us a fresh identity matrix
+	wins.SetMatrices();
 	Buffer b;
 	Shader s;
 	Server server;
@@ -90,27 +108,17 @@ void menu::winc()
 	ImG2.ImGuiNeeds();
 
 	Board::first.push_back(0);
-	Board wins(1000, 500,"CLIENT");
+	Board winc(1000, 500,"CLIENT");
 	Mouse mouse;
-	wins.initGLFW();
-	wins.MakeWindow();
-	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
-		std::cout << "Failed to initialize OpenGL context" << std::endl;
-		std::cin.get();
-
-	}
+	winc.initGLFW();
+	winc.MakeWindow();
+	winc.GladLoader();
 
 	ImG2.ImGuiInit();
 
-	ImG2.ImGuiImpGLFW(wins.getWin());
+	ImG2.ImGuiImpGLFW(winc.getWin());
 
-	glViewport(0.0f, 0.0f, SCREEN_WIDTH, SCREEN_HEIGHT);//specifies drawing part of the window
-	glMatrixMode(GL_PROJECTION);//defines properties of camera that views the object in the
-								//coordinate frame
-	glLoadIdentity();
-	glOrtho(0, SCREEN_WIDTH, 0, SCREEN_HEIGHT, 0, 1);//essentially set coordinate sys
-	glMatrixMode(GL_MODELVIEW);//defines how objects are transformed in your world
-	glLoadIdentity();//starts us a fresh identity matrix
+	winc.SetMatrices();
 	Buffer b;
 	Shader s;
 	b.generateBuffers(1, 1);
@@ -118,5 +126,5 @@ void menu::winc()
 	Client client;
 	client.connectToServer();
 
-	client.clientWindow(ImG2, wins, b, s);
+	client.clientWindow(ImG2, winc, b, s);
 }
