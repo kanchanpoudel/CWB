@@ -17,11 +17,31 @@ void Server::connectToClient()
 
 	
 }
-void Server::serverWindow(Board & win , Buffer & b, Mouse & mouse, Shader & s)
+void Server::serverWindow(ImGui1 & ImG2, Board & win , Buffer & b, Mouse & mouse, Shader & s)
 {
 	while (win.windowState())
 	{
 		win.renderWindow();
+		ImG2.ImGuiInitFrame();
+		ImGui::SetNextWindowPos(ImVec2(700, 20), ImGuiCond_Always);
+		{
+			ImGui::Begin("TOOLS", &menu::server_mode);
+			ImGui::Text("CHOOSE COLOR");
+			ImGui::ColorEdit3("clear color", (float*)&menu::clear_color);
+			if (ImGui::Button("DRAW"))
+			{
+				ImGui::Text("You're in Draw mode.");
+			}
+			ImGui::End();
+		}
+		ImGui::Render();
+		int display_w, display_h;
+		glfwMakeContextCurrent(win.getWin());
+		glfwGetFramebufferSize(win.getWin(), &display_w, &display_h);
+		glViewport(0, 0, display_w, display_h);
+		glClearColor(menu::clear_color.x,menu:: clear_color.y,menu:: clear_color.z, menu::clear_color.w);
+		glClear(GL_COLOR_BUFFER_BIT);
+		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
 
 		mouse.mouseButtonPressed(win.getWin());
@@ -40,7 +60,9 @@ void Server::serverWindow(Board & win , Buffer & b, Mouse & mouse, Shader & s)
 		glfwPollEvents();
 	}
 
+	ImG2.ImGuiCleanUp();
 
+	glfwDestroyWindow(win.getWin());
 	glfwTerminate();
 
  }

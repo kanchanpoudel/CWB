@@ -10,6 +10,7 @@
 #include"..\include\DataBuffer.h"
 #include"..\include\shader.h"
 #include"..\include\Board.h"
+#include "../../include/imguiIncludes/menu.h"
 using namespace std::literals::chrono_literals;
 
 
@@ -25,5 +26,5 @@ class Server
 		
 		void connectToClient();
 		static void SendingThread(); //static because it needs to be called by connectToClient
-		void serverWindow(Board &,Buffer &,Mouse &, Shader &);
+		void serverWindow(ImGui1&, Board &,Buffer &,Mouse &, Shader &);
 };

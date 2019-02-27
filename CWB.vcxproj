@@ -190,6 +190,9 @@
     <Library Include="dependencies\glfw\lib-vc2015\glfw3dll.lib" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="source\Board.cpp" />
+    <ClCompile Include="source\client.cpp" />
+    <ClCompile Include="source\DataBuffer.cpp" />
     <ClCompile Include="source\glad.cpp" />
     <ClCompile Include="source\menusrc\imgui.cpp" />
     <ClCompile Include="source\menusrc\imgui1cpp.cpp" />
@@ -199,7 +202,10 @@
     <ClCompile Include="source\menusrc\imgui_impl_opengl3.cpp" />
     <ClCompile Include="source\menusrc\imgui_widgets.cpp" />
     <ClCompile Include="source\menusrc\menu.cpp" />
-    <ClCompile Include="source\test.cpp" />
+    <ClCompile Include="source\mouse.cpp" />
+    <ClCompile Include="source\server.cpp" />
+    <ClCompile Include="source\shader.cpp.cpp" />
+    <ClCompile Include="source\main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

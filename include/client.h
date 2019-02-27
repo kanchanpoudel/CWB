@@ -10,6 +10,7 @@
 #include"..\include\DataBuffer.h"
 #include"..\include\shader.h"
 #include"..\include\Board.h"
+#include "../../include/imguiIncludes/menu.h"
 using namespace std::literals::chrono_literals;
 
 
@@ -25,5 +26,5 @@ public:
 
 	void connectToServer();
 	static void RecievingThread();
-	void clientWindow(Board &, Buffer &, Shader &);
+	void clientWindow(ImGui1 &, Board &, Buffer &, Shader &);
 };

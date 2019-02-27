@@ -27,12 +27,12 @@ GLFWwindow* Board::getWin()
 }
 void Board::renderWindow()
 {
-	glClearColor(1.0f, 0.0f, 0.0f, 1.0f);
+	//glClearColor(1.0f, 0.0f, 0.0f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT);
 }
 void Board::DrawBoard(std::vector<float> & positions, std::vector<int> & first, std::vector<int> & count)
 {
-	glPointSize(2);
+	glPointSize(0.1);
 	glLineWidth(6);
 	glDrawArrays(GL_POINTS, 0, positions.size());
 	glMultiDrawArrays(GL_LINE_STRIP, first.data(), count.data(), count.size());

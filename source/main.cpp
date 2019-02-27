@@ -17,62 +17,58 @@
 #include<string>
 #include<vector>
 #include<Network.hpp>
-int win2(void);
+
 const int SCREEN_WIDTH = 1000;
 const int SCREEN_HEIGHT = 500;
 ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
 int main(void)
 {
+	menu::server_mode = false;
+	menu::client_mode = false;
+	menu::clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
 	ImGui1 ImG1;
 	menu menu1;
-	//IMGUI Needed contents
+	
 	ImG1.ImGuiNeeds();
-	//.
+	
 
 
 	GLFWwindow* window;
 
-	/* Initialize the library */
+	
 	if (!glfwInit())
 		return -1;
 
-	/* Create a windowed mode window and its OpenGL context */
+	
 	window = glfwCreateWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "COLLABORATIVE WHITEBOARD", NULL, NULL);
 	if (!window)
 	{
 		glfwTerminate();
 		return -1;
 	}
-	/* Make the window's context current */
+	
 	glfwMakeContextCurrent(window);
 	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
 		std::cout << "Failed to initialize OpenGL context" << std::endl;
 		return -1;
 	}
 
-	//IMGUI CONTENTS INTIALIZATION
+	
 	ImG1.ImGuiInit();
 
 	ImG1.ImGuiImpGLFW(window);
 
-	glViewport(0.0f, 0.0f, SCREEN_WIDTH, SCREEN_HEIGHT);//specifies drawing part of the window
-	glMatrixMode(GL_PROJECTION);//defines properties of camera that views the object in the
-								//coordinate frame
+	glViewport(0.0f, 0.0f, SCREEN_WIDTH, SCREEN_HEIGHT);
+	glMatrixMode(GL_PROJECTION);
+	glOrtho(0, SCREEN_WIDTH, 0, SCREEN_HEIGHT, 0, 1);
+	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
-	glOrtho(0, SCREEN_WIDTH, 0, SCREEN_HEIGHT, 0, 1);//essentially set coordinate sys
-	glMatrixMode(GL_MODELVIEW);//defines how objects are transformed in your world
-	glLoadIdentity();//starts us a fresh identity matrix
 	while (!glfwWindowShouldClose(window))
 
 	{
 		glClear(GL_COLOR_BUFFER_BIT);
-		/* Render here */
-		//glfwSwapBuffers(window);
-
-		/* Poll for and process events */
+	
 		glfwPollEvents();
-
-		//INTIALIZATION of ImGui frame
 		ImG1.ImGuiInitFrame();
 		ImGui::SetNextWindowPos(ImVec2(0, 0), ImGuiCond_FirstUseEver);
 
@@ -89,12 +85,9 @@ int main(void)
 		glfwMakeContextCurrent(window);
 		glfwSwapBuffers(window);
 	}
-
-	// Cleanup
 	ImGui_ImplOpenGL3_Shutdown();
 	ImGui_ImplGlfw_Shutdown();
 	ImGui::DestroyContext();
-	//.
 	glfwDestroyWindow(window);
 	glfwTerminate();
 	return 0;
