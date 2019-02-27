@@ -88,5 +88,5 @@ void Shader::ShaderProgram()
 	ASSERT(location != -1);
 
 
-	glUniform4f(location, menu::brush_color.x, menu::brush_color.y, menu::brush_color.z, menu::brush_color.w);
+	glUniform4f(location, Menu::brush_color.x, Menu::brush_color.y, Menu::brush_color.z, Menu::brush_color.w);
 }

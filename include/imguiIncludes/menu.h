@@ -16,7 +16,7 @@
 #include"..\server.h"
 #include"..\client.h"
 #include<iostream>
-class menu
+class Menu
 {
 private:
 	
@@ -30,10 +30,12 @@ public:
 	static bool client_mode;
 	static bool draw_mode;
 	static bool pick_mode;
+	Menu();
 
 	void startMenu();
 	void startMenuTerminate(GLFWwindow*);
 	void wins();
 	void winc();
+	void win2(const std::string);
 	 
 };

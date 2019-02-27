@@ -3,13 +3,20 @@
 #include"..\..\include\client.h"
 #include"..\..\include\server.h"
 #include<iostream>
-bool menu:: server_mode;
-bool menu:: client_mode;
-bool menu::draw_mode;
-bool menu::pick_mode;
-ImVec4 menu::clear_color;
-ImVec4 menu::brush_color;
-void menu::startMenu()
+bool Menu:: server_mode;
+bool Menu:: client_mode;
+bool Menu::draw_mode;
+bool Menu::pick_mode;
+ImVec4 Menu::clear_color;
+ImVec4 Menu::brush_color;
+Menu::Menu()
+{
+	Menu::server_mode = false;
+	Menu::client_mode = false;
+	Menu::clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
+	Menu::brush_color = ImVec4(0.0f, 0.05f, 0.60f, 1.00f);
+}
+void Menu::startMenu()
 {
 	ImGui1 ImG1;
 	ImG1.ImGuiNeeds();
@@ -42,12 +49,12 @@ void menu::startMenu()
 		if (server_mode)
 		{
 			startMenuTerminate(win1.getWin());
-			wins();
+			win2("SERVER");
 		}
 		if (client_mode)
 		{
 			startMenuTerminate(win1.getWin());
-			winc();
+			win2("CLIENT");
 		}
 
 		ImGui::Render();
@@ -67,7 +74,7 @@ void menu::startMenu()
 	
 
 }
-void menu::startMenuTerminate(GLFWwindow* window)
+void Menu::startMenuTerminate(GLFWwindow* window)
 {
 	ImGui_ImplOpenGL3_Shutdown();
 	ImGui_ImplGlfw_Shutdown();
@@ -76,40 +83,15 @@ void menu::startMenuTerminate(GLFWwindow* window)
 	glfwTerminate();
 
 }
-void menu::wins()
+
+void Menu::win2(const std::string mode)
 {
 	ImGui1 ImG2;
 	ImG2.ImGuiNeeds();
 
 	Board::first.push_back(0);
-	Board wins(1000, 500,"server");
-	Mouse mouse;
-	wins.initGLFW();
-	wins.MakeWindow();
-	wins.GladLoader();
-
-	ImG2.ImGuiInit();
-
-	ImG2.ImGuiImpGLFW(wins.getWin());
-	wins.SetMatrices();
-	Buffer b;
-	Shader s;
-	Server server;
-	b.generateBuffers(1, 1);
-
+	Board winc(1000, 500, mode);
 	
-	server.connectToClient();
-
-	server.serverWindow(ImG2, wins, b, mouse, s);
-}
-void menu::winc()
-{
-	ImGui1 ImG2;
-	ImG2.ImGuiNeeds();
-
-	Board::first.push_back(0);
-	Board winc(1000, 500,"CLIENT");
-	Mouse mouse;
 	winc.initGLFW();
 	winc.MakeWindow();
 	winc.GladLoader();
@@ -122,9 +104,22 @@ void menu::winc()
 	Buffer b;
 	Shader s;
 	b.generateBuffers(1, 1);
+	if (mode == "SERVER")
+	{
+		Mouse mouse;
+		Server server;
+		server.connectToClient();
 
-	Client client;
-	client.connectToServer();
+		server.serverWindow(ImG2, winc, b, mouse, s);
+	}
 
-	client.clientWindow(ImG2, winc, b, s);
+		if (mode == "CLIENT")
+		{
+			Client client;
+			client.connectToServer();
+
+			client.clientWindow(ImG2, winc, b, s);
+		}
+	
+	
 }

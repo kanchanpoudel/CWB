@@ -47,7 +47,7 @@ void Board::renderWindow()
 	int display_w, display_h;
 	glfwGetFramebufferSize(window, &display_w, &display_h);
 	glViewport(0, 0, display_w, display_h);
-	glClearColor(menu::clear_color.x, menu::clear_color.y, menu:: clear_color.z, menu::clear_color.w);
+	glClearColor(Menu::clear_color.x, Menu::clear_color.y, Menu::clear_color.z, Menu::clear_color.w);
 	glClear(GL_COLOR_BUFFER_BIT);
 }
 void Board::DrawCalls(std::vector<float> & positions, std::vector<int> & first, std::vector<int> & count)

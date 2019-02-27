@@ -28,9 +28,9 @@ void Client::clientWindow(ImGui1 & ImG2, Board & win, Buffer & b, Shader &s)
 		ImG2.ImGuiInitFrame();
 		ImGui::SetNextWindowPos(ImVec2(700, 20), ImGuiCond_Always);
 		{
-			ImGui::Begin("TOOLS", &menu::server_mode);
-			ImGui::ColorEdit3("Board color", (float*)&menu::clear_color);
-			ImGui::ColorEdit3("Brushcolor", (float*)&menu::brush_color);
+			ImGui::Begin("TOOLS", &Menu::server_mode);
+			ImGui::ColorEdit3("Board color", (float*)&Menu::clear_color);
+			ImGui::ColorEdit3("Brushcolor", (float*)&Menu::brush_color);
 			ImGui::End();
 		}
 		ImGui::Render();

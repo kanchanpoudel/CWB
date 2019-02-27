@@ -1,3 +1,11 @@
-﻿  menu.cpp
-c:\users\acer\desktop\cwb\source\imguisrcs\menu.cpp(112): warning C4101: 'mouse': unreferenced local variable
+﻿  Board.cpp
+c:\users\acer\desktop\cwb\source\board.cpp(55): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+c:\users\acer\desktop\cwb\source\board.cpp(62): warning C4244: 'argument': conversion from 'float' to 'GLint', possible loss of data
+  menu.cpp
+  client.cpp
+  main.cpp
+  server.cpp
+  shader.cpp.cpp
+  Generating Code...
+c:\users\acer\desktop\cwb\source\board.cpp(21): warning C4715: 'Board::GladLoader': not all control paths return a value
   CWB.vcxproj -> C:\Users\Acer\Desktop\CWB\Debug\CWB.exe

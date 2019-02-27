@@ -26,18 +26,18 @@ void Server::serverWindow(ImGui1 & ImG2, Board & win , Buffer & b, Mouse & mouse
 		ImG2.ImGuiInitFrame();
 		ImGui::SetNextWindowPos(ImVec2(700, 20), ImGuiCond_Always);
 		{
-			ImGui::Begin("TOOLS", &menu::server_mode);
-			ImGui::ColorEdit3("PickWindowColor", (float*)&menu::clear_color);
-			ImGui::ColorEdit3("PickBrushColor", (float*)&menu::brush_color);
-			ImGui::Checkbox("Draw Mode", &menu::draw_mode);
-			ImGui::Checkbox("Pickk Mode", &menu::pick_mode);
+			ImGui::Begin("TOOLS", &Menu::server_mode);
+			ImGui::ColorEdit3("PickWindowColor", (float*)&Menu::clear_color);
+			ImGui::ColorEdit3("PickBrushColor", (float*)&Menu::brush_color);
+			ImGui::Checkbox("Draw Mode", &Menu::draw_mode);
+			ImGui::Checkbox("Pickk Mode", &Menu::pick_mode);
 			ImGui::End();
 		}
-		if (menu::draw_mode)
+		if (Menu::draw_mode)
 		{
 			mouseBlock = false;
 		}
-		if (menu::pick_mode)
+		if (Menu::pick_mode)
 		{
 			mouseBlock = true;
 		}

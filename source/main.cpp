@@ -21,12 +21,10 @@
 
 int main(void)
 {
-	menu::server_mode = false;
-	menu::client_mode = false;
+	
 	Server::mouseBlock = false;
-	menu::clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
-	menu::brush_color = ImVec4(0.0f, 0.05f, 0.60f, 1.00f);
-	menu first;
+	
+	Menu first;
 	first.startMenu();
 	
 	
