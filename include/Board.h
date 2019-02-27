@@ -9,14 +9,19 @@
 class Board
 {private:
 	GLFWwindow * window;
+	int SCREEN_WIDTH;
+	int SCREEN_HEIGHT;
+	float line_width;
+	std::string board_name;
 	public:
+		Board(const int, const int, const std::string);
 		static std::vector<float> positions;
 		static std::vector<int> first, count;
 		
 		void initGLFW();
-		void RenderBoard();
+		void MakeWindow();
 		void renderWindow();
-		void DrawBoard(std::vector<float> &, std::vector<int> &, std::vector<int> &);
+		void DrawCalls(std::vector<float> &, std::vector<int> &, std::vector<int> &);
 		GLFWwindow * getWin();
 		bool windowState();
 	

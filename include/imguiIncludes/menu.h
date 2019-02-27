@@ -25,6 +25,7 @@ private:
 	
 public:
 	static ImVec4 clear_color; 
+	static ImVec4 brush_color;
 	static bool server_mode;
 	static bool client_mode;
 	static bool draw_mode;

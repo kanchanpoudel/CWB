@@ -10,14 +10,22 @@ bool Board::windowState()
 		return false;
 
 }
+Board::Board(const int width, const int height, const std::string name)
+{
+	SCREEN_WIDTH=width;
+	SCREEN_HEIGHT=height;
+	board_name=name;
+	line_width = 4;
+}
+
 void Board::initGLFW()
 {
 	glfwInit();
 }
 
-void Board::RenderBoard()
+void Board::MakeWindow()
 {
-	window = glfwCreateWindow(1000, 500, "test Window", NULL, NULL);
+	window = glfwCreateWindow(SCREEN_WIDTH, SCREEN_HEIGHT, board_name.c_str(), NULL, NULL);
 	glfwMakeContextCurrent(window);
 	
 }
@@ -27,13 +35,13 @@ GLFWwindow* Board::getWin()
 }
 void Board::renderWindow()
 {
-	//glClearColor(1.0f, 0.0f, 0.0f, 1.0f);
+	
 	glClear(GL_COLOR_BUFFER_BIT);
 }
-void Board::DrawBoard(std::vector<float> & positions, std::vector<int> & first, std::vector<int> & count)
+void Board::DrawCalls(std::vector<float> & positions, std::vector<int> & first, std::vector<int> & count)
 {
 	glPointSize(0.1);
-	glLineWidth(6);
+	glLineWidth(line_width);
 	glDrawArrays(GL_POINTS, 0, positions.size());
 	glMultiDrawArrays(GL_LINE_STRIP, first.data(), count.data(), count.size());
 }

@@ -1,5 +1,7 @@
 #pragma once 
+
 #include"..\include\shader.h"
+#include"..\include\imguiIncludes\menu.h"
 
 void Shader::parseShader()
 {
@@ -86,5 +88,5 @@ void Shader::ShaderProgram()
 	ASSERT(location != -1);
 
 
-	glUniform4f(location, 0.0f, 0.0f, 0.4f, 1.0f);
+	glUniform4f(location, menu::brush_color.x, menu::brush_color.y, menu::brush_color.z, menu::brush_color.w);
 }

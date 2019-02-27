@@ -27,6 +27,7 @@ int main(void)
 	menu::client_mode = false;
 	Server::mouseBlock = false;
 	menu::clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
+	menu::brush_color = ImVec4(0.0f, 0.05f, 0.60f, 1.00f);
 	ImGui1 ImG1;
 	menu menu1;
 	

@@ -8,6 +8,7 @@ bool menu:: client_mode;
 bool menu::draw_mode;
 bool menu::pick_mode;
 ImVec4 menu::clear_color;
+ImVec4 menu::brush_color;
 void menu::win1(GLFWwindow* window)
 {
 	ImGui::Begin("Collaborative WhiteBoard");
@@ -52,10 +53,10 @@ void menu::wins()
 	ImG2.ImGuiNeeds();
 
 	Board::first.push_back(0);
-	Board wins;
+	Board wins(1000, 500,"server");
 	Mouse mouse;
 	wins.initGLFW();
-	wins.RenderBoard();
+	wins.MakeWindow();
 	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
 		std::cout << "Failed to initialize OpenGL context" << std::endl;
 		std::cin.get();
@@ -89,10 +90,10 @@ void menu::winc()
 	ImG2.ImGuiNeeds();
 
 	Board::first.push_back(0);
-	Board wins;
+	Board wins(1000, 500,"CLIENT");
 	Mouse mouse;
 	wins.initGLFW();
-	wins.RenderBoard();
+	wins.MakeWindow();
 	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
 		std::cout << "Failed to initialize OpenGL context" << std::endl;
 		std::cin.get();

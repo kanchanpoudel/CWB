@@ -27,7 +27,8 @@ void Server::serverWindow(ImGui1 & ImG2, Board & win , Buffer & b, Mouse & mouse
 		ImGui::SetNextWindowPos(ImVec2(700, 20), ImGuiCond_Always);
 		{
 			ImGui::Begin("TOOLS", &menu::server_mode);
-			ImGui::ColorEdit3("PickColor", (float*)&menu::clear_color);
+			ImGui::ColorEdit3("PickWindowColor", (float*)&menu::clear_color);
+			ImGui::ColorEdit3("PickBrushColor", (float*)&menu::brush_color);
 			ImGui::Checkbox("Draw Mode", &menu::draw_mode);
 			ImGui::Checkbox("Pickk Mode", &menu::pick_mode);
 			ImGui::End();
@@ -61,7 +62,7 @@ void Server::serverWindow(ImGui1 & ImG2, Board & win , Buffer & b, Mouse & mouse
 		b.CreateBuffer(Board::positions);
 		s.parseShader();
 		s.ShaderProgram();
-		win.DrawBoard(Board::positions, Board::first, Board::count);
+		win.DrawCalls(Board::positions, Board::first, Board::count);
 
 		b.unBindvaBuffer();
 

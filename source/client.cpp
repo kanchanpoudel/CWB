@@ -29,12 +29,8 @@ void Client::clientWindow(ImGui1 & ImG2, Board & win, Buffer & b, Shader &s)
 		ImGui::SetNextWindowPos(ImVec2(700, 20), ImGuiCond_Always);
 		{
 			ImGui::Begin("TOOLS", &menu::server_mode);
-			ImGui::Text("CHOOSE COLOR");
-			ImGui::ColorEdit3("clear color", (float*)&menu::clear_color);
-			if (ImGui::Button("DRAW"))
-			{
-				ImGui::Text("You're in Draw mode.");
-			}
+			ImGui::ColorEdit3("Board color", (float*)&menu::clear_color);
+			ImGui::ColorEdit3("Brushcolor", (float*)&menu::brush_color);
 			ImGui::End();
 		}
 		ImGui::Render();
@@ -49,7 +45,7 @@ void Client::clientWindow(ImGui1 & ImG2, Board & win, Buffer & b, Shader &s)
 		b.CreateBuffer(Board::positions);
 		s.parseShader();
 		s.ShaderProgram();
-		win.DrawBoard(Board::positions, Board::first, Board::count);
+		win.DrawCalls(Board::positions, Board::first, Board::count);
 
 		b.unBindvaBuffer();
 
