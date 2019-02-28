@@ -18,7 +18,7 @@ void Server::connectToClient()
 
 	
 }
-void Server::serverWindow(ImGui1 & ImG2, Board & win , Buffer & b, Mouse & mouse, Shader & s)
+int Server::serverWindow(ImGui1 & ImG2, Board & win , Buffer & b, Mouse & mouse, Shader & s)
 {
 	while (win.windowState())
 	{
@@ -29,8 +29,14 @@ void Server::serverWindow(ImGui1 & ImG2, Board & win , Buffer & b, Mouse & mouse
 			ImGui::Begin("TOOLS", &Menu::server_mode);
 			ImGui::ColorEdit3("PickWindowColor", (float*)&Menu::clear_color);
 			ImGui::ColorEdit3("PickBrushColor", (float*)&Menu::brush_color);
+			ImGui::Checkbox("Pick Mode", &Menu::pick_mode);
 			ImGui::Checkbox("Draw Mode", &Menu::draw_mode);
-			ImGui::Checkbox("Pickk Mode", &Menu::pick_mode);
+			
+			if (ImGui::Button("EXIT"))
+			{
+				Menu::startMenuTerminate(win.getWin());
+				return 0;
+			}
 			ImGui::End();
 		}
 		if (Menu::draw_mode)

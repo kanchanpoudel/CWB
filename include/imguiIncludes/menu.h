@@ -31,11 +31,11 @@ public:
 	static bool draw_mode;
 	static bool pick_mode;
 	Menu();
+	~Menu();
 
-	void startMenu();
-	void startMenuTerminate(GLFWwindow*);
-	void wins();
-	void winc();
+	int startMenu();
+	static void startMenuTerminate(GLFWwindow*);
+
 	void win2(const std::string);
 	 
 };

@@ -26,5 +26,5 @@ public:
 
 	void connectToServer();
 	static void RecievingThread();
-	void clientWindow(ImGui1 &, Board &, Buffer &, Shader &);
+	int clientWindow(ImGui1 &, Board &, Buffer &, Shader &);
 };

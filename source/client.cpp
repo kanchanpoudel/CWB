@@ -19,7 +19,7 @@ void Client::connectToServer()
 	std::thread worker(RecievingThread);
 	worker.detach();
 }
-void Client::clientWindow(ImGui1 & ImG2, Board & win, Buffer & b, Shader &s)
+int Client::clientWindow(ImGui1 & ImG2, Board & win, Buffer & b, Shader &s)
 {
 
 	while (win.windowState())
@@ -31,6 +31,11 @@ void Client::clientWindow(ImGui1 & ImG2, Board & win, Buffer & b, Shader &s)
 			ImGui::Begin("TOOLS", &Menu::server_mode);
 			ImGui::ColorEdit3("Board color", (float*)&Menu::clear_color);
 			ImGui::ColorEdit3("Brushcolor", (float*)&Menu::brush_color);
+			if (ImGui::Button("EXIT"))
+			{
+				Menu::startMenuTerminate(win.getWin());
+				return 0;
+			}
 			ImGui::End();
 		}
 		ImGui::Render();

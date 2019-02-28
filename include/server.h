@@ -26,5 +26,5 @@ class Server
 		static bool mouseBlock;
 		void connectToClient();
 		static void SendingThread(); 
-		void serverWindow(ImGui1&, Board &,Buffer &,Mouse &, Shader &);
+		int serverWindow(ImGui1&, Board &,Buffer &,Mouse &, Shader &);
 };

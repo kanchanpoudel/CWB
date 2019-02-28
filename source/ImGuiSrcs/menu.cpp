@@ -16,7 +16,8 @@ Menu::Menu()
 	Menu::clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
 	Menu::brush_color = ImVec4(0.0f, 0.05f, 0.60f, 1.00f);
 }
-void Menu::startMenu()
+Menu::~Menu(){}
+int Menu::startMenu()
 {
 	ImGui1 ImG1;
 	ImG1.ImGuiNeeds();
@@ -43,8 +44,14 @@ void Menu::startMenu()
 		ImGui::Begin("Collaborative WhiteBoard");
 		ImGui::Text("Welcome To Collaborative whiteboard");
 		ImGui::Text("CHOOSE MODE:");
-		ImGui::Checkbox("SERVER MODE", &server_mode);
+		
 		ImGui::Checkbox("CLIENT MODE", &client_mode);
+		ImGui::Checkbox("SERVER MODE", &server_mode);
+		if (ImGui::Button("EXIT"))
+		{
+			startMenuTerminate(win1.getWin());
+			return 0;
+		}
 		ImGui::End();
 		if (server_mode)
 		{
