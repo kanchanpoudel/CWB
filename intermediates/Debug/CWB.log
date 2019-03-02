@@ -1,3 +1,24 @@
-﻿  server.cpp
+﻿  Board.cpp
+c:\users\acer\desktop\cwb\source\board.cpp(55): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+c:\users\acer\desktop\cwb\source\board.cpp(62): warning C4244: 'argument': conversion from 'float' to 'GLint', possible loss of data
+  client.cpp
+  DataBuffer.cpp
+  glad.cpp
+  imgui.cpp
+  imgui1cpp.cpp
+  imgui_demo.cpp
+  imgui_draw.cpp
+  imgui_impl_glfw.cpp
+  imgui_impl_opengl3.cpp
+  imgui_widgets.cpp
+  menu.cpp
+  mouse.cpp
+  server.cpp
+  shader.cpp.cpp
+  main.cpp
+  Generating Code...
 c:\users\acer\desktop\cwb\source\server.cpp(80): warning C4715: 'Server::serverWindow': not all control paths return a value
+c:\users\acer\desktop\cwb\source\imguisrcs\menu.cpp(83): warning C4715: 'Menu::startMenu': not all control paths return a value
+c:\users\acer\desktop\cwb\source\client.cpp(62): warning C4715: 'Client::clientWindow': not all control paths return a value
+c:\users\acer\desktop\cwb\source\board.cpp(21): warning C4715: 'Board::GladLoader': not all control paths return a value
   CWB.vcxproj -> C:\Users\Acer\Desktop\CWB\Debug\CWB.exe
